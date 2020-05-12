@@ -328,7 +328,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2d2b89252d52b748b4c9df1fd50ab2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Tetrominoes:
+  Height: 20
+  Width: 10
+  tetrominoes:
   - {fileID: 3339187017440103656, guid: c69c97a87e999bd4dac1dce8708995a8, type: 3}
   - {fileID: 6854638885590889124, guid: 8ca488ab51bf31747b809856f4f2fe99, type: 3}
   - {fileID: 6766150292675758824, guid: 1b0dae9b704fca54eb5d007d7b3375aa, type: 3}

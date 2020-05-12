@@ -1,62 +1,83 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class TetrisBlock : MonoBehaviour
 {
-    public Vector3 rotationPoint;
-    private float previousTime;
-    public float fallTime = 0.8f;
-    public static int height = 20;
-    public static int width = 10;
-    private static Transform[,] grid = new Transform[width, height];
+    [SerializeField] private Vector3 rotationPoint;
 
-    private void Start()
+    private const float fallTime = 0.8f;
+
+    private TetrisController controller;
+    private float previousTime;
+
+    public void Init(TetrisController controller)
     {
-        
+        this.controller = controller;
     }
 
-    private void Update()
+    public void Tick(bool downPressed)
     {
-        if (Input.GetKeyDown(KeyCode.LeftArrow))
+        if (Time.time - previousTime > (downPressed ? fallTime / 10 : fallTime))
         {
-            transform.position += new Vector3(-1, 0, 0);
-            if(!ValidMove())
-                transform.position -= new Vector3(-1, 0, 0);
-        }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            transform.position += new Vector3(1, 0, 0);
-            if (!ValidMove())
-                transform.position -= new Vector3(1, 0, 0);
-        }
-        else if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            // rotate
-            transform.RotateAround(transform.TransformPoint(rotationPoint), new Vector3(0, 0, 1), 90);
-            if (!ValidMove())
-                transform.RotateAround(transform.TransformPoint(rotationPoint), new Vector3(0, 0, 1), -90);
-        }
-
-        if (Time.time - previousTime > (Input.GetKey(KeyCode.DownArrow) ? fallTime / 10 : fallTime))
-        {
-            transform.position += new Vector3(0, -1, 0);
-            if (!ValidMove())
+            if (!MoveIfValid(0, -1))
             {
-                transform.position -= new Vector3(0, -1, 0);
-                AddToGrid();
-                CheckForLines();
-                this.enabled = false;
-                FindObjectOfType<TetrisController>().NewTetronimo();
+                if(!CheckForGameOver())
+                {
+                    AddToGrid();
+                    CheckForLines();
+                    controller.NewTetrisBlock();
+                }
             }
 
             previousTime = Time.time;
         }
     }
 
+    public bool MoveIfValid(int x = 0, int y = 0)
+    {
+        foreach (Transform children in transform)
+        {
+            int roundedX = Mathf.RoundToInt(children.transform.position.x + x);
+            int roundedY = Mathf.RoundToInt(children.transform.position.y + y);
+
+            // outside bounds
+            if (roundedX < 0 || roundedX >= TetrisSettings.Width || roundedY < 0 || roundedY > TetrisSettings.Height) return false;
+
+            // already occupied
+            if (controller.Grid[roundedX, roundedY] != null) return false;
+        }
+
+        // valid move
+        transform.position += new Vector3(x, y, 0);
+        return true;
+    }
+
+    // TODO: make this better
+    public void RotateIfValid(float angle)
+    {
+        transform.RotateAround(transform.TransformPoint(rotationPoint), new Vector3(0, 0, 1), angle);
+        if (!MoveIfValid())
+            transform.RotateAround(transform.TransformPoint(rotationPoint), new Vector3(0, 0, 1), angle);
+    }
+
+    private bool CheckForGameOver()
+    {
+        foreach (Transform children in transform)
+        {
+            int roundedY = Mathf.RoundToInt(children.transform.position.y);
+
+            if (roundedY >= TetrisSettings.Height)
+            {
+                controller.GameOver();
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     private void CheckForLines()
     {
-        for (int i = height - 1; i >= 0; i--)
+        for (int i = TetrisSettings.Height - 1; i >= 0; i--)
         {
             if (HasLine(i))
             {
@@ -68,9 +89,9 @@ public class TetrisBlock : MonoBehaviour
 
     private bool HasLine(int i)
     {
-        for (int j = 0; j < width; j++)
+        for (int j = 0; j < TetrisSettings.Width; j++)
         {
-            if (grid[j, i] == null)
+            if (controller.Grid[j, i] == null)
                 return false;
         }
 
@@ -79,24 +100,24 @@ public class TetrisBlock : MonoBehaviour
 
     private void DeleteLine(int i)
     {
-        for (int j = 0; j < width; j++)
+        for (int j = 0; j < TetrisSettings.Width; j++)
         {
-            Destroy(grid[j, i].gameObject);
-            grid[j, i] = null;
+            Destroy(controller.Grid[j, i].gameObject);
+            controller.Grid[j, i] = null;
         }
     }
 
     private void RowDown(int i)
     {
-        for (int y = i; y < height; y++)
+        for (int y = i; y < TetrisSettings.Height; y++)
         {
-            for (int j = 0; j < width; j++)
+            for (int j = 0; j < TetrisSettings.Width; j++)
             {
-                if(grid[j, y] != null)
+                if(controller.Grid[j, y] != null)
                 {
-                    grid[j, y - 1] = grid[j, y];
-                    grid[j, y] = null;
-                    grid[j, y - 1].transform.position -= new Vector3(0, 1, 0);
+                    controller.Grid[j, y - 1] = controller.Grid[j, y];
+                    controller.Grid[j, y] = null;
+                    controller.Grid[j, y - 1].transform.position -= new Vector3(0, 1, 0);
                 }
             }
         }
@@ -109,28 +130,7 @@ public class TetrisBlock : MonoBehaviour
             int roundedX = Mathf.RoundToInt(children.transform.position.x);
             int roundedY = Mathf.RoundToInt(children.transform.position.y);
 
-            grid[roundedX, roundedY] = children;
+            controller.Grid[roundedX, roundedY] = children;
         }
-    }
-
-    private bool ValidMove()
-    {
-        foreach (Transform children in transform)
-        {
-            int roundedX = Mathf.RoundToInt(children.transform.position.x);
-            int roundedY = Mathf.RoundToInt(children.transform.position.y);
-
-            if(roundedX < 0 || roundedX >= width || roundedY < 0 || roundedY >= height)
-            {
-                return false;
-            }
-
-            if(grid[roundedX, roundedY] != null)
-            {
-                return false;
-            }
-        }
-
-        return true;
     }
 }
