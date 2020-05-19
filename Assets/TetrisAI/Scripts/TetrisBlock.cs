@@ -23,8 +23,8 @@ public class TetrisBlock : MonoBehaviour
                 if(!CheckForGameOver())
                 {
                     AddToGrid();
-                    CheckForLines();
-                    controller.NewTetrisBlock();
+                    int lines = CheckForLines();
+                    controller.BlockPlaced(lines);
                 }
             }
 
@@ -75,16 +75,21 @@ public class TetrisBlock : MonoBehaviour
         return false;
     }
 
-    private void CheckForLines()
+    private int CheckForLines()
     {
+        int numLines = 0;
+
         for (int i = TetrisSettings.Height - 1; i >= 0; i--)
         {
             if (HasLine(i))
             {
                 DeleteLine(i);
                 RowDown(i);
+                numLines++;
             }
         }
+
+        return numLines;
     }
 
     private bool HasLine(int i)
