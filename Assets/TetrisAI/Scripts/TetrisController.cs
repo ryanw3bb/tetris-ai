@@ -4,14 +4,13 @@ using UnityEngine.UI;
 
 public class TetrisController : MonoBehaviour
 {
-    [HideInInspector] public Transform[,] Grid;
+    public TetrisBlock CurrentBlock { get; private set; }
+    public Transform[,] Grid { get; private set; }
 
     [SerializeField] private Text scoreText;
     [SerializeField] private Text highScoreText;  
     [SerializeField] private GameObject[] tetrominoes;
-
     private List<GameObject> blocks = new List<GameObject>();
-    private TetrisBlock currentBlock;
     private int currentPoints = 0;
     private int highestPoints = 0;
 
@@ -22,26 +21,26 @@ public class TetrisController : MonoBehaviour
 
     private void Update()
     {
-        if (currentBlock == null) return;
+        if (CurrentBlock == null) return;
 
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            currentBlock.MoveIfValid(-1, 0);
+            CurrentBlock.MoveIfValid(-1, 0);
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            currentBlock.MoveIfValid(1, 0);
+            CurrentBlock.MoveIfValid(1, 0);
         }
         else if (Input.GetKeyDown(KeyCode.X))
         {
-            currentBlock.RotateIfValid(90);
+            CurrentBlock.RotateIfValid(90);
         }
         else if (Input.GetKeyDown(KeyCode.Z))
         {
-            currentBlock.RotateIfValid(-90);
+            CurrentBlock.RotateIfValid(-90);
         }
 
-        currentBlock.Tick(Input.GetKey(KeyCode.DownArrow));
+        CurrentBlock.Tick(Input.GetKey(KeyCode.DownArrow));
     }
 
     private void Reset()
@@ -74,10 +73,10 @@ public class TetrisController : MonoBehaviour
 
     private void NewTetrisBlock()
     {
-        currentBlock = Instantiate(tetrominoes[Random.Range(0, tetrominoes.Length)],
+        CurrentBlock = Instantiate(tetrominoes[Random.Range(0, tetrominoes.Length)],
             transform.position, Quaternion.identity).GetComponent<TetrisBlock>();
-        currentBlock.Init(this);
-        blocks.Add(currentBlock.gameObject);
+        CurrentBlock.Init(this);
+        blocks.Add(CurrentBlock.gameObject);
     }
 
     public void GameOver()
@@ -88,5 +87,21 @@ public class TetrisController : MonoBehaviour
             highScoreText.text = string.Format(TetrisSettings.HighScoreFormat, highestPoints);
         }
         Reset();
+    }
+
+    public float[] GetFlattenedGrid()
+    {
+        float[] flatGrid = new float[TetrisSettings.Width * TetrisSettings.Height];
+        
+        for(int i = 0; i < this.Grid.GetLength(0); i++)
+        {
+            for(int j = 0; j < this.Grid.GetLength(1); j++)
+            {
+                int idx = (i * TetrisSettings.Width) + j;
+                flatGrid[idx] = this.Grid[i, j] == null ? 0 : 1;
+            }
+        }
+
+        return flatGrid;
     }
 }

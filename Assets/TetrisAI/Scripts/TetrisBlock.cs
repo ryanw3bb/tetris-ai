@@ -2,9 +2,12 @@
 
 public class TetrisBlock : MonoBehaviour
 {
-    [SerializeField] private Vector3 rotationPoint;
+    public int Shape { get { return shape; } }
+    public int Rotation { get; private set; }
+    public Vector2 Position { get { return transform.position + TetrisSettings.Offset; } }
 
-    private const float fallTime = 0.8f;
+    [SerializeField] private Vector3 rotationPoint;
+    [SerializeField] private int shape;
 
     private TetrisController controller;
     private float previousTime;
@@ -12,11 +15,13 @@ public class TetrisBlock : MonoBehaviour
     public void Init(TetrisController controller)
     {
         this.controller = controller;
+
+        Vector3 t = transform.position + transform.position;
     }
 
     public void Tick(bool downPressed)
     {
-        if (Time.time - previousTime > (downPressed ? fallTime / 10 : fallTime))
+        if (Time.time - previousTime > (downPressed ? TetrisSettings.FallTime / 10 : TetrisSettings.FallTime))
         {
             if (!MoveIfValid(0, -1))
             {
@@ -55,8 +60,18 @@ public class TetrisBlock : MonoBehaviour
     public void RotateIfValid(float angle)
     {
         transform.RotateAround(transform.TransformPoint(rotationPoint), new Vector3(0, 0, 1), angle);
+        
         if (!MoveIfValid())
+        {
             transform.RotateAround(transform.TransformPoint(rotationPoint), new Vector3(0, 0, 1), angle);
+        }
+        else
+        {
+            int idx = (angle == 90) ? 1 : -1;
+            Rotation += idx;
+            if (Rotation > 3) Rotation = 0;
+            else if (Rotation < 0) Rotation = 3;
+        }
     }
 
     private bool CheckForGameOver()

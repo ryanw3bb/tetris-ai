@@ -210,7 +210,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationPoint: {x: 0, y: 0, z: 0}
-  fallTime: 0.8
+  shape: 1
 --- !u!1 &6854638885722527296
 GameObject:
   m_ObjectHideFlags: 0
