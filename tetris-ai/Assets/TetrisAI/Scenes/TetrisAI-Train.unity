@@ -663,7 +663,7 @@ GameObject:
   - component: {fileID: 2101282718}
   - component: {fileID: 2101282717}
   m_Layer: 0
-  m_Name: Controller
+  m_Name: TetrisController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -720,8 +720,9 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
     resetOnDone: 1
-    onDemandDecision: 0
+    onDemandDecision: 1
     numberOfActionsBetweenDecisions: 1
+  trainingMode: 0
 --- !u!114 &2101282718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -735,14 +736,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    vectorObservationSize: 1
+    vectorObservationSize: 183
     numStackedVectorObservations: 1
-    vectorActionSize: 01000000
+    vectorActionSize: 0300000003000000
     vectorActionDescriptions: []
     vectorActionSpaceType: 0
   m_Model: {fileID: 0}
   m_InferenceDevice: 0
-  m_BehaviorType: 0
+  m_BehaviorType: 1
   m_BehaviorName: TetrisLearning
   m_TeamID: 0
-  m_useChildSensors: 1
+  m_useChildSensors: 0

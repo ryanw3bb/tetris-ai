@@ -10,13 +10,14 @@ public class TetrisBlock : MonoBehaviour
     [SerializeField] private int shape;
 
     private TetrisController controller;
+    private TetrisAgent agent;
     private float previousTime;
+    private bool decisionProcessed;
 
-    public void Init(TetrisController controller)
+    public void Init(TetrisController controller, TetrisAgent agent)
     {
         this.controller = controller;
-
-        Vector3 t = transform.position + transform.position;
+        this.agent = agent;
     }
 
     public void Tick(bool downPressed)
@@ -31,6 +32,11 @@ public class TetrisBlock : MonoBehaviour
                     int lines = CheckForLines();
                     controller.BlockPlaced(lines);
                 }
+            }
+
+            if(!decisionProcessed)
+            {
+                RequestDecision();
             }
 
             previousTime = Time.time;
@@ -72,6 +78,13 @@ public class TetrisBlock : MonoBehaviour
             if (Rotation > 3) Rotation = 0;
             else if (Rotation < 0) Rotation = 3;
         }
+    }
+
+    private void RequestDecision()
+    {
+        Debug.Log("Request Decision");
+        decisionProcessed = true;
+        agent.RequestDecision();
     }
 
     private bool CheckForGameOver()

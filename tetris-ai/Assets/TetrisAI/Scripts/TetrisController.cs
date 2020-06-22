@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using MLAgents;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,12 +11,14 @@ public class TetrisController : MonoBehaviour
     [SerializeField] private Text scoreText;
     [SerializeField] private Text highScoreText;  
     [SerializeField] private GameObject[] tetrominoes;
+    private TetrisAgent agent;
     private List<GameObject> blocks = new List<GameObject>();
     private int currentPoints = 0;
     private int highestPoints = 0;
 
     private void Start()
     {
+        agent = GetComponent<TetrisAgent>();
         Reset();
     }
 
@@ -45,6 +48,7 @@ public class TetrisController : MonoBehaviour
 
     private void Reset()
     {
+        agent.Done();
         foreach (GameObject block in blocks)
             Destroy(block);
         blocks = new List<GameObject>();
@@ -60,7 +64,9 @@ public class TetrisController : MonoBehaviour
     }
 
     private void AddToScore(int points)
-    {
+    { 
+        agent.AddReward(points / 100);
+
         currentPoints += points;
         scoreText.text = string.Format(TetrisSettings.ScoreFormat, currentPoints);
     }
@@ -75,7 +81,7 @@ public class TetrisController : MonoBehaviour
     {
         CurrentBlock = Instantiate(tetrominoes[Random.Range(0, tetrominoes.Length)],
             transform.position, Quaternion.identity).GetComponent<TetrisBlock>();
-        CurrentBlock.Init(this);
+        CurrentBlock.Init(this, agent);
         blocks.Add(CurrentBlock.gameObject);
     }
 
@@ -103,5 +109,5 @@ public class TetrisController : MonoBehaviour
         }
 
         return flatGrid;
-    }
+    }   
 }

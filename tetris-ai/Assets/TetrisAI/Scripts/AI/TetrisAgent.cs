@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class TetrisAgent : Agent
 {
+    [SerializeField] private bool trainingMode;
     private TetrisController controller;
 
     private void Start()
@@ -13,31 +14,52 @@ public class TetrisAgent : Agent
     public override void InitializeAgent()
     {
         base.InitializeAgent();
+
+        // override the max step set in the inspector
+        // Max 5000 steps if training, infinite steps if racing
+        agentParameters.maxStep = trainingMode ? 5000 : 0;
     }
 
     /// <summary>
     /// Read action inputs from vectorAction
+    /// Action space has size 2
     /// vectorAction[0] = rotate
     /// vectorAction[1] = move
     /// </summary>
     /// <param name="vectorAction">The chosen actions</param>
     public override void AgentAction(float[] vectorAction)
     {
-        // rotation right/left
-        if (vectorAction[0] == 1f)
-            controller.CurrentBlock.RotateIfValid(90);
-        else if (vectorAction[0] == -1f)
+        // rotate right/left
+        // 0 - rotate left
+        // 1 - none
+        // 2 - rotate right
+        float rotate = vectorAction[0];
+        if (rotate == 0)
             controller.CurrentBlock.RotateIfValid(-90);
+        else if (rotate == 2)
+            controller.CurrentBlock.RotateIfValid(90);
 
         // move right/left
-        if (vectorAction[1] == 1f)
-            controller.CurrentBlock.MoveIfValid(1);
-        else if (vectorAction[1] == -1f)
+        // 0 - move left
+        // 1 - none
+        // 2 - move right
+        float move = vectorAction[1];
+        if (move == 0)
             controller.CurrentBlock.MoveIfValid(-1);
+        else if (move == 2)
+            controller.CurrentBlock.MoveIfValid(1);
+
+        if(trainingMode)
+        {
+            // small negative reward every step
+            AddReward(-1f / agentParameters.maxStep);
+        }
     }
 
     /// <summary>
     /// Collect observations used by agent to make decisions
+    /// Observation space has size 183
+    /// Grid is 10 x 18 = 180
     /// </summary>
     public override void CollectObservations()
     {
