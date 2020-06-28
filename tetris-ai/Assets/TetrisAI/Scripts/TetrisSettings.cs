@@ -13,6 +13,7 @@ public class TetrisSettings
     public const string ScoreFormat = "Score: {0}";
     public const string HighScoreFormat = "High Score: {0}";
     public const float FallTime = 0.8f;
+    public const int MovesPerBlock = 6;
 
     public static readonly Vector3 Offset = new Vector3(-1f, -0.5f, 0f);
 }

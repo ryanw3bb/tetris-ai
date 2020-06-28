@@ -1,28 +1,40 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEditor;
+using UnityEngine;
 
 public class TetrisBlock : MonoBehaviour
 {
     public int Shape { get { return shape; } }
     public int Rotation { get; private set; }
     public Vector2 Position { get { return transform.position + TetrisSettings.Offset; } }
+    public bool Active { get; private set; }
 
     [SerializeField] private Vector3 rotationPoint;
     [SerializeField] private int shape;
 
-    private TetrisController controller;
+    private TetrisGame controller;
     private TetrisAgent agent;
     private float previousTime;
-    private bool decisionProcessed;
+    private bool decisionStarted;
+    private bool decisionFinished;
 
-    public void Init(TetrisController controller, TetrisAgent agent)
+    public void Init(TetrisGame controller, TetrisAgent agent)
     {
         this.controller = controller;
         this.agent = agent;
+        Active = true;
     }
 
-    public void Tick(bool downPressed)
+    //public void Tick(bool downPressed)
+    private void FixedUpdate()
     {
-        if (Time.time - previousTime > (downPressed ? TetrisSettings.FallTime / 10 : TetrisSettings.FallTime))
+        if (!Active) return;
+
+        //float speed = downPressed || decisionFinished ? TetrisSettings.FallTime / 10 : TetrisSettings.FallTime;
+        //float speed = downPressed ? TetrisSettings.FallTime / 10 : TetrisSettings.FallTime;
+        float speed = TetrisSettings.FallTime;
+
+        if (Time.time - previousTime > speed)
         {
             if (!MoveIfValid(0, -1))
             {
@@ -31,13 +43,14 @@ public class TetrisBlock : MonoBehaviour
                     AddToGrid();
                     int lines = CheckForLines();
                     controller.BlockPlaced(lines);
+                    Active = false;
                 }
             }
 
-            if(!decisionProcessed)
+            /*if(!controller.HumanPlayer && !decisionStarted)
             {
                 RequestDecision();
-            }
+            }*/
 
             previousTime = Time.time;
         }
@@ -80,12 +93,36 @@ public class TetrisBlock : MonoBehaviour
         }
     }
 
-    private void RequestDecision()
+    /*private void RequestDecision()
     {
-        Debug.Log("Request Decision");
-        decisionProcessed = true;
-        agent.RequestDecision();
+        decisionStarted = true;
+        StartCoroutine(RequestDecisionRoutine());
     }
+
+    private IEnumerator RequestDecisionRoutine()
+    {
+        for (int i = 0; i < TetrisSettings.MovesPerBlock; i++)
+        {
+            if (!Active) yield break;
+
+            if (!controller.RandomMode)
+            {
+                agent.RequestDecision();
+            }
+            else
+            {
+                // Random action
+                float[] actions = new float[2];
+                actions[0] = Mathf.Round(Random.Range(0, 2f));
+                actions[1] = Mathf.Round(Random.Range(0, 2f));
+                agent.OnActionReceived(actions);
+            }
+
+            yield return new WaitForEndOfFrame();
+        }
+
+        decisionFinished = true;
+    }*/
 
     private bool CheckForGameOver()
     {
@@ -96,6 +133,7 @@ public class TetrisBlock : MonoBehaviour
             if (roundedY >= TetrisSettings.Height)
             {
                 controller.GameOver();
+                Active = false;
                 return true;
             }
         }

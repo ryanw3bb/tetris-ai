@@ -1,23 +1,29 @@
-﻿using MLAgents;
+﻿using Unity.MLAgents;
+using Unity.MLAgents.Sensors;
 using UnityEngine;
 
 public class TetrisAgent : Agent
 {
+    [SerializeField] private TetrisGame controller;
     [SerializeField] private bool trainingMode;
-    private TetrisController controller;
 
-    private void Start()
+    public override void Initialize()
     {
-        controller = GetComponent<TetrisController>();    
-    }
+        base.Initialize();
 
-    public override void InitializeAgent()
-    {
-        base.InitializeAgent();
+        controller.Init(this);
 
         // override the max step set in the inspector
         // Max 5000 steps if training, infinite steps if racing
-        agentParameters.maxStep = trainingMode ? 5000 : 0;
+        MaxStep = trainingMode ? 5000 : 0;
+    }
+
+    /// <summary>
+    /// Called when a new episode begins
+    /// </summary>
+    public override void OnEpisodeBegin()
+    {
+        controller.StartGame();
     }
 
     /// <summary>
@@ -27,7 +33,7 @@ public class TetrisAgent : Agent
     /// vectorAction[1] = move
     /// </summary>
     /// <param name="vectorAction">The chosen actions</param>
-    public override void AgentAction(float[] vectorAction)
+    public override void OnActionReceived(float[] vectorAction)
     {
         // rotate right/left
         // 0 - rotate left
@@ -52,7 +58,7 @@ public class TetrisAgent : Agent
         if(trainingMode)
         {
             // small negative reward every step
-            AddReward(-1f / agentParameters.maxStep);
+            AddReward(-1f / MaxStep);
         }
     }
 
@@ -61,23 +67,18 @@ public class TetrisAgent : Agent
     /// Observation space has size 183
     /// Grid is 10 x 18 = 180
     /// </summary>
-    public override void CollectObservations()
+    public override void CollectObservations(VectorSensor sensor)
     {
         // shape of tetromino
-        AddVectorObs(controller.CurrentBlock.Shape);
+        sensor.AddObservation(controller.CurrentBlock.Shape);
 
         // rotation of tetromino
-        AddVectorObs(controller.CurrentBlock.Rotation);
+        sensor.AddObservation(controller.CurrentBlock.Rotation);
 
         // position of tetromino
-        AddVectorObs(controller.CurrentBlock.Position);
+        sensor.AddObservation(controller.CurrentBlock.Position);
 
         // filled positions
-        AddVectorObs(controller.GetFlattenedGrid());
-    }
-
-    public override void AgentReset()
-    {
-        
+        sensor.AddObservation(controller.GetFlattenedGrid());
     }
 }
