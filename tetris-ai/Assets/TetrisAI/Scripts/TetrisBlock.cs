@@ -13,15 +13,13 @@ public class TetrisBlock : MonoBehaviour
     [SerializeField] private int shape;
 
     private TetrisGame controller;
-    private TetrisAgent agent;
     private float previousTime;
     private bool decisionStarted;
     private bool decisionFinished;
 
-    public void Init(TetrisGame controller, TetrisAgent agent)
+    public void Init(TetrisGame controller)
     {
         this.controller = controller;
-        this.agent = agent;
         Active = true;
     }
 
@@ -56,15 +54,15 @@ public class TetrisBlock : MonoBehaviour
         }
     }
 
-    public bool MoveIfValid(int x = 0, int y = 0)
+    public bool MoveIfValid(int x, int y = 0)
     {
-        foreach (Transform children in transform)
+        foreach (Transform child in transform)
         {
-            int roundedX = Mathf.RoundToInt(children.transform.position.x + x);
-            int roundedY = Mathf.RoundToInt(children.transform.position.y + y);
+            int roundedX = Mathf.RoundToInt(child.transform.position.x + x);
+            int roundedY = Mathf.RoundToInt(child.transform.position.y + y);
 
             // outside bounds
-            if (roundedX < 0 || roundedX >= TetrisSettings.Width || roundedY < 0 || roundedY > TetrisSettings.Height) return false;
+            if (roundedX < 0 || roundedX >= TetrisSettings.Width || roundedY < 0 || roundedY >= TetrisSettings.Height) return false;
 
             // already occupied
             if (controller.Grid[roundedX, roundedY] != null) return false;
@@ -75,60 +73,43 @@ public class TetrisBlock : MonoBehaviour
         return true;
     }
 
-    // TODO: make this better
+    // TODO: helper class?
+    private Vector3Int RotatePointAroundPivot(Vector3 point, Vector3 pivot, Vector3 angles)
+    {
+        return Vector3Int.RoundToInt(Quaternion.Euler(angles) * (point - pivot) + pivot);
+    }
+
     public void RotateIfValid(float angle)
     {
+        Vector3 rotation = new Vector3(0, 0, angle);
+        Vector3 pivot = transform.TransformPoint(rotationPoint);
+
+        foreach (Transform child in transform)
+        {
+            // rotate each child around point
+            Vector3Int newPos = RotatePointAroundPivot(child.position, pivot, rotation);
+
+            // outside bounds
+            if (newPos.x < 0 || newPos.x >= TetrisSettings.Width || newPos.y < 0 || newPos.y >= TetrisSettings.Height) return;
+
+            // already occupied
+            if (controller.Grid[newPos.x, newPos.y] != null) return;
+        }
+
         transform.RotateAround(transform.TransformPoint(rotationPoint), new Vector3(0, 0, 1), angle);
-        
-        if (!MoveIfValid())
-        {
-            transform.RotateAround(transform.TransformPoint(rotationPoint), new Vector3(0, 0, 1), angle);
-        }
-        else
-        {
-            int idx = (angle == 90) ? 1 : -1;
-            Rotation += idx;
-            if (Rotation > 3) Rotation = 0;
-            else if (Rotation < 0) Rotation = 3;
-        }
+
+        // TODO: do we need this? Just send transform.rotation.z
+        int idx = (angle == 90) ? 1 : -1;
+        Rotation += idx;
+        if (Rotation > 3) Rotation = 0;
+        else if (Rotation < 0) Rotation = 3;
     }
-
-    /*private void RequestDecision()
-    {
-        decisionStarted = true;
-        StartCoroutine(RequestDecisionRoutine());
-    }
-
-    private IEnumerator RequestDecisionRoutine()
-    {
-        for (int i = 0; i < TetrisSettings.MovesPerBlock; i++)
-        {
-            if (!Active) yield break;
-
-            if (!controller.RandomMode)
-            {
-                agent.RequestDecision();
-            }
-            else
-            {
-                // Random action
-                float[] actions = new float[2];
-                actions[0] = Mathf.Round(Random.Range(0, 2f));
-                actions[1] = Mathf.Round(Random.Range(0, 2f));
-                agent.OnActionReceived(actions);
-            }
-
-            yield return new WaitForEndOfFrame();
-        }
-
-        decisionFinished = true;
-    }*/
 
     private bool CheckForGameOver()
     {
-        foreach (Transform children in transform)
+        foreach (Transform child in transform)
         {
-            int roundedY = Mathf.RoundToInt(children.transform.position.y);
+            int roundedY = Mathf.RoundToInt(child.transform.position.y);
 
             if (roundedY >= TetrisSettings.Height)
             {
@@ -204,4 +185,36 @@ public class TetrisBlock : MonoBehaviour
             controller.Grid[roundedX, roundedY] = children;
         }
     }
+
+    /*private void RequestDecision()
+    {
+        decisionStarted = true;
+        StartCoroutine(RequestDecisionRoutine());
+    }
+
+    private IEnumerator RequestDecisionRoutine()
+    {
+        for (int i = 0; i < TetrisSettings.MovesPerBlock; i++)
+        {
+            if (!Active) yield break;
+
+            if (!controller.RandomMode)
+            {
+                agent.RequestDecision();
+            }
+            else
+            {
+                // Random action
+                float[] actions = new float[2];
+                actions[0] = Mathf.Round(Random.Range(0, 2f));
+                actions[1] = Mathf.Round(Random.Range(0, 2f));
+                agent.OnActionReceived(actions);
+            }
+
+            yield return new WaitForEndOfFrame();
+        }
+
+        decisionFinished = true;
+    }*/
+
 }

@@ -18,13 +18,6 @@ public class TetrisGame : MonoBehaviour
     private int currentPoints = 0;
     private int highestPoints = 0;
 
-    private void Update()
-    {
-        //if (CurrentBlock == null) return;
-
-        //CurrentBlock.Tick(false);
-    }
-
     public void Init(TetrisAgent agent)
     {
         this.agent = agent;
@@ -53,14 +46,14 @@ public class TetrisGame : MonoBehaviour
         if (lines > 0)
             AddToScore(TetrisSettings.Points[lines - 1]);
         else
-            agent.AddReward(0.001f);
+            agent.AddReward(0.01f);
 
         NewTetrisBlock();
     }
 
     private void AddToScore(int points)
     { 
-        agent.AddReward(points / 100);
+        agent.AddReward(points / 10);
 
         currentPoints += points;
         scoreText.text = string.Format(TetrisSettings.ScoreFormat, currentPoints);
@@ -76,7 +69,7 @@ public class TetrisGame : MonoBehaviour
     {
         CurrentBlock = Instantiate(tetrominoes[Random.Range(0, tetrominoes.Length)],
             transform.position, Quaternion.identity).GetComponent<TetrisBlock>();
-        CurrentBlock.Init(this, agent);
+        CurrentBlock.Init(this);
         blocks.Add(CurrentBlock.gameObject);
     }
 
@@ -89,19 +82,20 @@ public class TetrisGame : MonoBehaviour
         }
 
         ResetGame();
+        agent.AddReward(-5f);
         agent.EndEpisode();
     }
 
     public float[] GetFlattenedGrid()
     {
         float[] flatGrid = new float[TetrisSettings.Width * TetrisSettings.Height];
-        
-        for(int i = 0; i < this.Grid.GetLength(0); i++)
+
+        for(int y = 0; y < Grid.GetLength(1); y++)
         {
-            for(int j = 0; j < this.Grid.GetLength(1); j++)
+            for(int x = 0; x < Grid.GetLength(0); x++)
             {
-                int idx = (i * TetrisSettings.Width) + j;
-                flatGrid[idx] = this.Grid[i, j] == null ? 0 : 1;
+                int idx = (y * TetrisSettings.Width) + x;
+                flatGrid[idx] = Grid[x, y] == null ? 0 : 1;
             }
         }
 
