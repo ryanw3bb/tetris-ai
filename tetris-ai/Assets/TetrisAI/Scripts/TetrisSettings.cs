@@ -2,8 +2,10 @@
 
 public class TetrisSettings
 {
-    public const int Width = 10;
-    public const int Height = 18;
+    public const int GridWidth = 10;
+    public const int GridHeight = 19;
+    public const int SpawnX = 4; // 5th column
+    public const int SpawnY = 16; // 17th row
 
     public readonly static int[] Points = new int[]
     { 
@@ -12,8 +14,5 @@ public class TetrisSettings
 
     public const string ScoreFormat = "Score: {0}";
     public const string HighScoreFormat = "High Score: {0}";
-    public const float FallTime = 0.8f;
-    public const int MovesPerBlock = 6;
-
-    public static readonly Vector3 Offset = new Vector3(-1f, -0.5f, 0f);
+    public const float FallTime = 0.1f; // 0.8f
 }

@@ -14,7 +14,7 @@ public class TetrisAgent : Agent
         controller.Init(this);
 
         // override the max step set in the inspector
-        // Max 5000 steps if training, infinite steps if racing
+        // Max 5000 steps if training, infinite steps if playing
         MaxStep = trainingMode ? 5000 : 0;
     }
 
@@ -35,31 +35,23 @@ public class TetrisAgent : Agent
     /// <param name="vectorAction">The chosen actions</param>
     public override void OnActionReceived(float[] vectorAction)
     {
-        // rotate right/left
-        // 0 - rotate left
-        // 1 - none
-        // 2 - rotate right
+        // rotation
+        // 0 - 0
+        // 1 - 90
+        // 2 - 180
+        // 3 - 270
         float rotate = vectorAction[0];
-        if (rotate == 0)
-            controller.CurrentBlock.RotateIfValid(-90);
-        else if (rotate == 2)
+        if (rotate == 1)
             controller.CurrentBlock.RotateIfValid(90);
+        else if (rotate == 2)
+            controller.CurrentBlock.RotateIfValid(180);
+        else if (rotate == 3)
+            controller.CurrentBlock.RotateIfValid(270);
 
-        // move right/left
-        // 0 - move left
-        // 1 - none
-        // 2 - move right
-        float move = vectorAction[1];
-        if (move == 0)
-            controller.CurrentBlock.MoveIfValid(-1);
-        else if (move == 2)
-            controller.CurrentBlock.MoveIfValid(1);
-
-        if(trainingMode)
-        {
-            // small negative reward every step
-            AddReward(-1f / MaxStep);
-        }
+        // horizontal (x) position
+        // value 0 - 9
+        float position = vectorAction[1];
+        controller.CurrentBlock.SetPositionIfValid(Mathf.RoundToInt(position));
     }
 
     /// <summary>
@@ -71,12 +63,6 @@ public class TetrisAgent : Agent
     {
         // shape of tetromino
         sensor.AddObservation(controller.CurrentBlock.Shape);
-
-        // rotation of tetromino
-        sensor.AddObservation(controller.CurrentBlock.Rotation);
-
-        // position of tetromino
-        sensor.AddObservation(controller.CurrentBlock.Position);
 
         // filled positions
         sensor.AddObservation(controller.GetFlattenedGrid());

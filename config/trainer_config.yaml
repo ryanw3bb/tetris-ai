@@ -23,7 +23,17 @@ default:
             strength: 1.0
             gamma: 0.99
 
-AircraftLearning:
+TetrisLearning:
+    batch_size: 256
+    buffer_size: 8192
+    hidden_units: 512
+    max_steps: 5.0e7
+    reward_signals:
+        extrinsic:
+            strength: 1.0
+            gamma: 0.95
+
+TetrisLearning_NotUsing:
     time_horizon: 128
     batch_size: 2048
     buffer_size: 20480

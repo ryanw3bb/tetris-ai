@@ -5,8 +5,6 @@ using UnityEngine;
 public class TetrisBlock : MonoBehaviour
 {
     public int Shape { get { return shape; } }
-    public int Rotation { get; private set; }
-    public Vector2 Position { get { return transform.position + TetrisSettings.Offset; } }
     public bool Active { get; private set; }
 
     [SerializeField] private Vector3 rotationPoint;
@@ -14,8 +12,6 @@ public class TetrisBlock : MonoBehaviour
 
     private TetrisGame controller;
     private float previousTime;
-    private bool decisionStarted;
-    private bool decisionFinished;
 
     public void Init(TetrisGame controller)
     {
@@ -23,12 +19,10 @@ public class TetrisBlock : MonoBehaviour
         Active = true;
     }
 
-    //public void Tick(bool downPressed)
     private void FixedUpdate()
     {
         if (!Active) return;
 
-        //float speed = downPressed || decisionFinished ? TetrisSettings.FallTime / 10 : TetrisSettings.FallTime;
         //float speed = downPressed ? TetrisSettings.FallTime / 10 : TetrisSettings.FallTime;
         float speed = TetrisSettings.FallTime;
 
@@ -45,38 +39,43 @@ public class TetrisBlock : MonoBehaviour
                 }
             }
 
-            /*if(!controller.HumanPlayer && !decisionStarted)
-            {
-                RequestDecision();
-            }*/
-
             previousTime = Time.time;
         }
+    }
+
+    public void SetPositionIfValid(int x)
+    {
+        foreach (Transform child in transform)
+        {
+            float offset = child.transform.position.x - transform.position.x;
+            int roundedX = Mathf.RoundToInt(x + offset);
+
+            // outside bounds
+            if (roundedX < 0 || roundedX >= TetrisSettings.GridWidth) return;
+        }
+
+        // valid move
+        transform.localPosition = new Vector3(x, transform.localPosition.y, 0);
     }
 
     public bool MoveIfValid(int x, int y = 0)
     {
         foreach (Transform child in transform)
         {
-            int roundedX = Mathf.RoundToInt(child.transform.position.x + x);
-            int roundedY = Mathf.RoundToInt(child.transform.position.y + y);
+            Vector3 localPosition = controller.transform.InverseTransformPoint(child.transform.position);
+            int roundedX = Mathf.RoundToInt(localPosition.x + x);
+            int roundedY = Mathf.RoundToInt(localPosition.y + y);
 
             // outside bounds
-            if (roundedX < 0 || roundedX >= TetrisSettings.Width || roundedY < 0 || roundedY >= TetrisSettings.Height) return false;
+            if (roundedX < 0 || roundedX >= TetrisSettings.GridWidth || roundedY < 0 || roundedY >= TetrisSettings.GridHeight) return false;
 
             // already occupied
             if (controller.Grid[roundedX, roundedY] != null) return false;
         }
 
         // valid move
-        transform.position += new Vector3(x, y, 0);
+        transform.localPosition += new Vector3(x, y, 0);
         return true;
-    }
-
-    // TODO: helper class?
-    private Vector3Int RotatePointAroundPivot(Vector3 point, Vector3 pivot, Vector3 angles)
-    {
-        return Vector3Int.RoundToInt(Quaternion.Euler(angles) * (point - pivot) + pivot);
     }
 
     public void RotateIfValid(float angle)
@@ -87,31 +86,31 @@ public class TetrisBlock : MonoBehaviour
         foreach (Transform child in transform)
         {
             // rotate each child around point
-            Vector3Int newPos = RotatePointAroundPivot(child.position, pivot, rotation);
+            Vector3 newPos = RotatePointAroundPivot(child.position, pivot, rotation);
+
+            // convert to local space
+            Vector3 localPos = controller.transform.InverseTransformPoint(newPos);
+            int roundedX = Mathf.RoundToInt(localPos.x);
+            int roundedY = Mathf.RoundToInt(localPos.y);
 
             // outside bounds
-            if (newPos.x < 0 || newPos.x >= TetrisSettings.Width || newPos.y < 0 || newPos.y >= TetrisSettings.Height) return;
+            if (roundedX < 0 || roundedX >= TetrisSettings.GridWidth || roundedY < 0 || roundedY >= TetrisSettings.GridHeight) return;
 
             // already occupied
-            if (controller.Grid[newPos.x, newPos.y] != null) return;
+            if (controller.Grid[roundedX, roundedY] != null) return;
         }
 
         transform.RotateAround(transform.TransformPoint(rotationPoint), new Vector3(0, 0, 1), angle);
-
-        // TODO: do we need this? Just send transform.rotation.z
-        int idx = (angle == 90) ? 1 : -1;
-        Rotation += idx;
-        if (Rotation > 3) Rotation = 0;
-        else if (Rotation < 0) Rotation = 3;
     }
 
     private bool CheckForGameOver()
     {
         foreach (Transform child in transform)
         {
-            int roundedY = Mathf.RoundToInt(child.transform.position.y);
+            Vector3 localPos = controller.transform.InverseTransformPoint(child.transform.position);
+            int roundedY = Mathf.RoundToInt(localPos.y);
 
-            if (roundedY >= TetrisSettings.Height)
+            if (roundedY >= TetrisSettings.SpawnY)
             {
                 controller.GameOver();
                 Active = false;
@@ -126,7 +125,7 @@ public class TetrisBlock : MonoBehaviour
     {
         int numLines = 0;
 
-        for (int i = TetrisSettings.Height - 1; i >= 0; i--)
+        for (int i = TetrisSettings.GridHeight - 1; i >= 0; i--)
         {
             if (HasLine(i))
             {
@@ -141,7 +140,7 @@ public class TetrisBlock : MonoBehaviour
 
     private bool HasLine(int i)
     {
-        for (int j = 0; j < TetrisSettings.Width; j++)
+        for (int j = 0; j < TetrisSettings.GridWidth; j++)
         {
             if (controller.Grid[j, i] == null)
                 return false;
@@ -152,7 +151,7 @@ public class TetrisBlock : MonoBehaviour
 
     private void DeleteLine(int i)
     {
-        for (int j = 0; j < TetrisSettings.Width; j++)
+        for (int j = 0; j < TetrisSettings.GridWidth; j++)
         {
             Destroy(controller.Grid[j, i].gameObject);
             controller.Grid[j, i] = null;
@@ -161,9 +160,9 @@ public class TetrisBlock : MonoBehaviour
 
     private void RowDown(int i)
     {
-        for (int y = i; y < TetrisSettings.Height; y++)
+        for (int y = i; y < TetrisSettings.GridHeight; y++)
         {
-            for (int j = 0; j < TetrisSettings.Width; j++)
+            for (int j = 0; j < TetrisSettings.GridWidth; j++)
             {
                 if(controller.Grid[j, y] != null)
                 {
@@ -177,44 +176,18 @@ public class TetrisBlock : MonoBehaviour
 
     private void AddToGrid()
     {
-        foreach (Transform children in transform)
+        foreach (Transform child in transform)
         {
-            int roundedX = Mathf.RoundToInt(children.transform.position.x);
-            int roundedY = Mathf.RoundToInt(children.transform.position.y);
+            Vector3 localPos = controller.transform.InverseTransformPoint(child.transform.position);
+            int roundedX = Mathf.RoundToInt(localPos.x);
+            int roundedY = Mathf.RoundToInt(localPos.y);
 
-            controller.Grid[roundedX, roundedY] = children;
+            controller.Grid[roundedX, roundedY] = child;
         }
     }
 
-    /*private void RequestDecision()
+    private Vector3Int RotatePointAroundPivot(Vector3 point, Vector3 pivot, Vector3 angles)
     {
-        decisionStarted = true;
-        StartCoroutine(RequestDecisionRoutine());
+        return Vector3Int.RoundToInt(Quaternion.Euler(angles) * (point - pivot) + pivot);
     }
-
-    private IEnumerator RequestDecisionRoutine()
-    {
-        for (int i = 0; i < TetrisSettings.MovesPerBlock; i++)
-        {
-            if (!Active) yield break;
-
-            if (!controller.RandomMode)
-            {
-                agent.RequestDecision();
-            }
-            else
-            {
-                // Random action
-                float[] actions = new float[2];
-                actions[0] = Mathf.Round(Random.Range(0, 2f));
-                actions[1] = Mathf.Round(Random.Range(0, 2f));
-                agent.OnActionReceived(actions);
-            }
-
-            yield return new WaitForEndOfFrame();
-        }
-
-        decisionFinished = true;
-    }*/
-
 }
