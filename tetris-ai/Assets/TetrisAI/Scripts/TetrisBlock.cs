@@ -1,5 +1,5 @@
-﻿using System.Collections;
-using UnityEditor;
+﻿using System.Collections.Generic;
+using Unity.MLAgents;
 using UnityEngine;
 
 public class TetrisBlock : MonoBehaviour
@@ -11,12 +11,21 @@ public class TetrisBlock : MonoBehaviour
     [SerializeField] private int shape;
 
     private TetrisGame controller;
+    private TetrisAgent agent;
     private float previousTime;
+    private Dictionary<Transform, Vector3> offsets;
 
-    public void Init(TetrisGame controller)
+    public void Init(TetrisGame controller, TetrisAgent agent)
     {
         this.controller = controller;
+        this.agent = agent;
         Active = true;
+
+        offsets = new Dictionary<Transform, Vector3>();
+        foreach (Transform child in transform)
+        {
+            offsets.Add(child, child.localPosition);
+        }
     }
 
     private void FixedUpdate()
@@ -24,7 +33,7 @@ public class TetrisBlock : MonoBehaviour
         if (!Active) return;
 
         //float speed = downPressed ? TetrisSettings.FallTime / 10 : TetrisSettings.FallTime;
-        float speed = TetrisSettings.FallTime;
+        float speed = agent.IsTraining ? TetrisSettings.TrainFallTime : TetrisSettings.PlayFallTime;
 
         if (Time.time - previousTime > speed)
         {
@@ -43,7 +52,7 @@ public class TetrisBlock : MonoBehaviour
         }
     }
 
-    public void SetPositionIfValid(int x)
+    public void SetPosition(int x)
     {
         foreach (Transform child in transform)
         {
@@ -51,7 +60,11 @@ public class TetrisBlock : MonoBehaviour
             int roundedX = Mathf.RoundToInt(x + offset);
 
             // outside bounds
-            if (roundedX < 0 || roundedX >= TetrisSettings.GridWidth) return;
+            if (roundedX < 0 || roundedX >= TetrisSettings.GridWidth)
+            {
+                controller.GameOver();
+                return;
+            }
         }
 
         // valid move
@@ -75,6 +88,7 @@ public class TetrisBlock : MonoBehaviour
 
         // valid move
         transform.localPosition += new Vector3(x, y, 0);
+
         return true;
     }
 
@@ -102,6 +116,55 @@ public class TetrisBlock : MonoBehaviour
 
         transform.RotateAround(transform.TransformPoint(rotationPoint), new Vector3(0, 0, 1), angle);
     }
+
+    public Vector2Int[] TransformPosition(int xpos, float angle, bool set = false)
+    {
+        Vector2Int[] positions = new Vector2Int[4];
+
+        Vector3 rotation = new Vector3(0, 0, angle);
+        int count = 0;
+
+        foreach (KeyValuePair<Transform, Vector3> child in offsets)
+        {
+            // rotate each child around rotation point
+            Vector3 rotatedOffset = RotatePointAroundPivot(child.Value, rotationPoint, rotation);
+
+            // convert to local space and shift to x position
+            int roundedX = Mathf.RoundToInt(xpos + rotatedOffset.x);
+            int roundedY = Mathf.RoundToInt(transform.localPosition.y + rotatedOffset.y);
+
+            // outside bounds
+            if (roundedX < 0 || roundedX >= TetrisSettings.GridWidth || roundedY < 0 || roundedY >= TetrisSettings.GridHeight)
+            {
+                if (set)
+                {
+                    agent.PrintStatus("Placed block outside bounds");
+                }
+                return null;
+            }
+
+            // already occupied
+            if (controller.Grid[roundedX, roundedY] != null)
+            {
+                if (set)
+                {
+                    agent.PrintStatus("Placed block on another block");
+                }
+                return null;
+            }
+
+            if (set)
+            {
+                child.Key.position = controller.transform.TransformPoint(roundedX, roundedY, 0);
+            }
+
+            positions[count] = new Vector2Int(roundedX, roundedY);
+            count++;
+        }
+
+        return positions;
+    }
+
 
     private bool CheckForGameOver()
     {

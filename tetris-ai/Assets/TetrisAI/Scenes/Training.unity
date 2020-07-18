@@ -121,6 +121,95 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &46630229
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 460608453715393103, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 56578562}
+    - target: {fileID: 460608453715393103, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: highScoreText
+      value: 
+      objectReference: {fileID: 62836156}
+    - target: {fileID: 460608453715393103, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: uiController
+      value: 
+      objectReference: {fileID: 1202199595}
+    - target: {fileID: 5188967486792095414, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_Name
+      value: Tetris (30)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188967486792095414, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 104.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -75
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 32
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5ff4ffadf743695428c58cb83fa55306, type: 3}
 --- !u!1 &56578560
 GameObject:
   m_ObjectHideFlags: 0
@@ -277,6 +366,95 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 62836154}
   m_CullTransparentMesh: 0
+--- !u!1001 &76256025
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 460608453715393103, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 56578562}
+    - target: {fileID: 460608453715393103, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: highScoreText
+      value: 
+      objectReference: {fileID: 62836156}
+    - target: {fileID: 460608453715393103, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: uiController
+      value: 
+      objectReference: {fileID: 1202199595}
+    - target: {fileID: 5188967486792095414, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_Name
+      value: Tetris (24)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188967486792095414, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 74.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -50
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 27
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5ff4ffadf743695428c58cb83fa55306, type: 3}
 --- !u!1001 &237983515
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -303,6 +481,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tetris (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188967486792095414, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
         type: 3}
@@ -388,6 +571,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tetris (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 5188967486792095414, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -445,6 +633,95 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ff4ffadf743695428c58cb83fa55306, type: 3}
+--- !u!1001 &370259210
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 460608453715393103, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 56578562}
+    - target: {fileID: 460608453715393103, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: highScoreText
+      value: 
+      objectReference: {fileID: 62836156}
+    - target: {fileID: 460608453715393103, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: uiController
+      value: 
+      objectReference: {fileID: 1202199595}
+    - target: {fileID: 5188967486792095414, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_Name
+      value: Tetris (19)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188967486792095414, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 59.699997
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -25
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 29
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5ff4ffadf743695428c58cb83fa55306, type: 3}
 --- !u!1001 &442478550
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -471,6 +748,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tetris (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188967486792095414, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
         type: 3}
@@ -712,6 +994,451 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1001 &649920451
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 460608453715393103, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 56578562}
+    - target: {fileID: 460608453715393103, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: highScoreText
+      value: 
+      objectReference: {fileID: 62836156}
+    - target: {fileID: 460608453715393103, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: uiController
+      value: 
+      objectReference: {fileID: 1202199595}
+    - target: {fileID: 5188967486792095414, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_Name
+      value: Tetris (21)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188967486792095414, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 89.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -50
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5ff4ffadf743695428c58cb83fa55306, type: 3}
+--- !u!1001 &698249691
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 460608453715393103, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 56578562}
+    - target: {fileID: 460608453715393103, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: highScoreText
+      value: 
+      objectReference: {fileID: 62836156}
+    - target: {fileID: 460608453715393103, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: uiController
+      value: 
+      objectReference: {fileID: 1202199595}
+    - target: {fileID: 5188967486792095414, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_Name
+      value: Tetris (20)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188967486792095414, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 104.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -25
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5ff4ffadf743695428c58cb83fa55306, type: 3}
+--- !u!1001 &736293763
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 460608453715393103, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 56578562}
+    - target: {fileID: 460608453715393103, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: highScoreText
+      value: 
+      objectReference: {fileID: 62836156}
+    - target: {fileID: 460608453715393103, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: uiController
+      value: 
+      objectReference: {fileID: 1202199595}
+    - target: {fileID: 5188967486792095414, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_Name
+      value: Tetris (31)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188967486792095414, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 74.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -75
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5ff4ffadf743695428c58cb83fa55306, type: 3}
+--- !u!1001 &804233445
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 460608453715393103, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 56578562}
+    - target: {fileID: 460608453715393103, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: highScoreText
+      value: 
+      objectReference: {fileID: 62836156}
+    - target: {fileID: 460608453715393103, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: uiController
+      value: 
+      objectReference: {fileID: 1202199595}
+    - target: {fileID: 5188967486792095414, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_Name
+      value: Tetris (26)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188967486792095414, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 59.699997
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -50
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5ff4ffadf743695428c58cb83fa55306, type: 3}
+--- !u!1001 &816408785
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 460608453715393103, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 56578562}
+    - target: {fileID: 460608453715393103, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: highScoreText
+      value: 
+      objectReference: {fileID: 62836156}
+    - target: {fileID: 460608453715393103, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: uiController
+      value: 
+      objectReference: {fileID: 1202199595}
+    - target: {fileID: 5188967486792095414, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_Name
+      value: Tetris (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188967486792095414, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 59.699997
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 33
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5ff4ffadf743695428c58cb83fa55306, type: 3}
 --- !u!1001 &850877420
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -738,6 +1465,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tetris (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188967486792095414, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
         type: 3}
@@ -823,6 +1555,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tetris (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 5188967486792095414, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -880,6 +1617,95 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ff4ffadf743695428c58cb83fa55306, type: 3}
+--- !u!1001 &915560007
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 460608453715393103, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 56578562}
+    - target: {fileID: 460608453715393103, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: highScoreText
+      value: 
+      objectReference: {fileID: 62836156}
+    - target: {fileID: 460608453715393103, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: uiController
+      value: 
+      objectReference: {fileID: 1202199595}
+    - target: {fileID: 5188967486792095414, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_Name
+      value: Tetris (29)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188967486792095414, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 89.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -75
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5ff4ffadf743695428c58cb83fa55306, type: 3}
 --- !u!1001 &953781460
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -906,6 +1732,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tetris (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188967486792095414, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
         type: 3}
@@ -991,6 +1822,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tetris (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 5188967486792095414, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1074,6 +1910,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tetris (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188967486792095414, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
         type: 3}
@@ -1206,6 +2047,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tetris (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 5188967486792095414, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1263,6 +2109,95 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ff4ffadf743695428c58cb83fa55306, type: 3}
+--- !u!1001 &1293134775
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 460608453715393103, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 56578562}
+    - target: {fileID: 460608453715393103, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: highScoreText
+      value: 
+      objectReference: {fileID: 62836156}
+    - target: {fileID: 460608453715393103, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: uiController
+      value: 
+      objectReference: {fileID: 1202199595}
+    - target: {fileID: 5188967486792095414, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_Name
+      value: Tetris (25)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188967486792095414, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 74.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -25
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5ff4ffadf743695428c58cb83fa55306, type: 3}
 --- !u!1001 &1293615534
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1289,6 +2224,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tetris (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188967486792095414, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
         type: 3}
@@ -1329,6 +2269,184 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5ff4ffadf743695428c58cb83fa55306, type: 3}
+--- !u!1001 &1338786380
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 460608453715393103, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 56578562}
+    - target: {fileID: 460608453715393103, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: highScoreText
+      value: 
+      objectReference: {fileID: 62836156}
+    - target: {fileID: 460608453715393103, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: uiController
+      value: 
+      objectReference: {fileID: 1202199595}
+    - target: {fileID: 5188967486792095414, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_Name
+      value: Tetris (23)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188967486792095414, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 89.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -25
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 31
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5ff4ffadf743695428c58cb83fa55306, type: 3}
+--- !u!1001 &1360333784
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 460608453715393103, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 56578562}
+    - target: {fileID: 460608453715393103, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: highScoreText
+      value: 
+      objectReference: {fileID: 62836156}
+    - target: {fileID: 460608453715393103, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: uiController
+      value: 
+      objectReference: {fileID: 1202199595}
+    - target: {fileID: 5188967486792095414, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_Name
+      value: Tetris (22)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188967486792095414, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 104.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
         type: 3}
@@ -1459,6 +2577,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tetris (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 5188967486792095414, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1516,6 +2639,95 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ff4ffadf743695428c58cb83fa55306, type: 3}
+--- !u!1001 &1790000491
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 460608453715393103, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 56578562}
+    - target: {fileID: 460608453715393103, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: highScoreText
+      value: 
+      objectReference: {fileID: 62836156}
+    - target: {fileID: 460608453715393103, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: uiController
+      value: 
+      objectReference: {fileID: 1202199595}
+    - target: {fileID: 5188967486792095414, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_Name
+      value: Tetris (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188967486792095414, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 74.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5ff4ffadf743695428c58cb83fa55306, type: 3}
 --- !u!1001 &1841387075
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1542,6 +2754,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tetris (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188967486792095414, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
         type: 3}
@@ -1600,6 +2817,273 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ff4ffadf743695428c58cb83fa55306, type: 3}
+--- !u!1001 &1983756631
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 460608453715393103, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 56578562}
+    - target: {fileID: 460608453715393103, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: highScoreText
+      value: 
+      objectReference: {fileID: 62836156}
+    - target: {fileID: 460608453715393103, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: uiController
+      value: 
+      objectReference: {fileID: 1202199595}
+    - target: {fileID: 5188967486792095414, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_Name
+      value: Tetris (28)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188967486792095414, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 59.699997
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -75
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5ff4ffadf743695428c58cb83fa55306, type: 3}
+--- !u!1001 &2004627950
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 460608453715393103, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 56578562}
+    - target: {fileID: 460608453715393103, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: highScoreText
+      value: 
+      objectReference: {fileID: 62836156}
+    - target: {fileID: 460608453715393103, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: uiController
+      value: 
+      objectReference: {fileID: 1202199595}
+    - target: {fileID: 5188967486792095414, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_Name
+      value: Tetris (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188967486792095414, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 89.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5ff4ffadf743695428c58cb83fa55306, type: 3}
+--- !u!1001 &2040404519
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 460608453715393103, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 56578562}
+    - target: {fileID: 460608453715393103, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: highScoreText
+      value: 
+      objectReference: {fileID: 62836156}
+    - target: {fileID: 460608453715393103, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: uiController
+      value: 
+      objectReference: {fileID: 1202199595}
+    - target: {fileID: 5188967486792095414, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_Name
+      value: Tetris (27)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188967486792095414, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 104.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -50
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5ff4ffadf743695428c58cb83fa55306, type: 3}
 --- !u!1001 &2055071471
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1626,6 +3110,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tetris (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188967486792095414, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
         type: 3}
@@ -1711,6 +3200,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tetris (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 5188967486792095414, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1795,6 +3289,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tetris (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 5188967486792095414, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1878,6 +3377,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tetris
+      objectReference: {fileID: 0}
+    - target: {fileID: 5188967486792095414, guid: 5ff4ffadf743695428c58cb83fa55306,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9166587547372272024, guid: 5ff4ffadf743695428c58cb83fa55306,
         type: 3}

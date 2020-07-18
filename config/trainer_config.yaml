@@ -1,17 +1,13 @@
 default:
-    trainer: ppo
+    trainer: sac
     batch_size: 1024
-    beta: 5.0e-3
     buffer_size: 10240
-    epsilon: 0.2
     hidden_units: 128
-    lambd: 0.95
-    learning_rate: 3.0e-4
+    learning_rate: 0.0003
     learning_rate_schedule: linear
     max_steps: 5.0e5
     memory_size: 128
     normalize: false
-    num_epoch: 3
     num_layers: 2
     time_horizon: 64
     sequence_length: 64
@@ -21,24 +17,24 @@ default:
     reward_signals:
         extrinsic:
             strength: 1.0
-            gamma: 0.99
+            gamma: 0.99  
 
 TetrisLearning:
-    batch_size: 256
-    buffer_size: 8192
-    hidden_units: 512
-    max_steps: 5.0e7
-    reward_signals:
-        extrinsic:
-            strength: 1.0
-            gamma: 0.95
+    hidden_units: 128
+    batch_size: 512
+    buffer_size: 20000
+    buffer_init_steps: 10000
+    init_entcoef: 0.5
+    tau: 0.005
+    steps_per_update: 1
+    learning_rate: 0.0015
 
-TetrisLearning_NotUsing:
-    time_horizon: 128
-    batch_size: 2048
-    buffer_size: 20480
-    hidden_units: 256
-    num_layers: 2
-    beta: 1.0e-2
-    max_steps: 5.0e7
-    num_epoch: 6
+TetrisLearningQueue:
+    batch_size: 128
+    beta: 0.05
+    learning_rate: 1.0e-3
+    reward_signals:
+        curiosity:
+            strength: 0.02
+            gamma: 0.99
+            encoding_size: 64

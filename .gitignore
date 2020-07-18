@@ -9,8 +9,8 @@ tetris-ai/Build/
 tetris-ai/Logs/
 tetris-ai/Assets/ML-Agents/Timers/
 tetris-ai/Assets/ML-Agents/Timers.meta
-models/
-summaries/
+/models/
+/summaries/
 tetris-ai/csharp_timers.json
 tetris-ai/Assets/ML-Agents.meta
 

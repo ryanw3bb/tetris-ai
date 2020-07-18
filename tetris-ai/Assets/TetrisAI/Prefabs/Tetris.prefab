@@ -126,9 +126,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 181
+    VectorObservationSize: 160
     NumStackedVectorObservations: 1
-    VectorActionSize: 040000000a000000
+    VectorActionSize: 28000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
   m_Model: {fileID: 0}
@@ -153,8 +153,8 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
+  IsTraining: 1
   controller: {fileID: 460608453715393103}
-  trainingMode: 1
 --- !u!1 &460608453715393097
 GameObject:
   m_ObjectHideFlags: 0
