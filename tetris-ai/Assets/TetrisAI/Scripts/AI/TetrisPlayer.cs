@@ -3,10 +3,9 @@ using UnityEngine.InputSystem;
 
 public class TetrisPlayer : TetrisAgent
 {
-    [Header("Input Bindings")]
-    public InputAction moveHorizInput;
-    public InputAction moveVertInput;
-    public InputAction rotateInput;
+    [SerializeField] private int rotation;
+    [SerializeField] private int position;
+    [SerializeField] private InputAction confirmMove;
 
     /// <summary>
     /// Enable input listeners
@@ -15,14 +14,8 @@ public class TetrisPlayer : TetrisAgent
     {
         base.Initialize();
 
-        moveHorizInput.Enable();
-        moveHorizInput.performed += OnPlayerInput;
-
-        moveVertInput.Enable();
-        moveVertInput.performed += OnPlayerInput;
-
-        rotateInput.Enable();
-        rotateInput.performed += OnPlayerInput;
+        confirmMove.Enable();
+        confirmMove.performed += OnPlayerInput;
     }
 
     /// <summary>
@@ -40,25 +33,13 @@ public class TetrisPlayer : TetrisAgent
     /// <returns>An array of floats for OnActionReceived to use</returns>
     public override void Heuristic(float[] actionsOut)
     {
-        // Rotate: -1 == left, 0 == none, 1 == right
-        float rotateValue = Mathf.Round(rotateInput.ReadValue<float>());
-        rotateValue++;
+        float action = (position * TetrisSettings.NumRotations) + rotation;
 
-        // Horizontal: -1 == left, 0 == none, 1 == right
-        float horizValue = Mathf.Round(moveHorizInput.ReadValue<float>());
-        horizValue++;
-
-        // Vertical: 0 == none, 1 == down
-        float vertValue = Mathf.Round(moveVertInput.ReadValue<float>());
-
-        actionsOut[0] = rotateValue;
-        actionsOut[1] = horizValue;
+        actionsOut[0] = action;
     }
 
     private void OnDestroy()
     {
-        moveHorizInput.Disable();
-        moveVertInput.Disable();
-        rotateInput.Disable();
+        confirmMove.Disable();
     }
 }

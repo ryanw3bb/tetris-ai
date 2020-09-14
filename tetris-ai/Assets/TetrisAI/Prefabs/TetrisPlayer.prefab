@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &460608452964916897
+--- !u!1 &2877576594148950997
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,60 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 460608452964916903}
-  - component: {fileID: 460608452964916896}
+  - component: {fileID: 2877576594148950996}
+  - component: {fileID: 2877576594148950995}
+  m_Layer: 0
+  m_Name: TetrisGame
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2877576594148950996
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2877576594148950997}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6826646242301427716}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2877576594148950995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2877576594148950997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2d2b89252d52b748b4c9df1fd50ab2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiController: {fileID: 0}
+  tetrominoes:
+  - {fileID: 3339187017440103657, guid: c69c97a87e999bd4dac1dce8708995a8, type: 3}
+  - {fileID: 6854638885590889123, guid: 8ca488ab51bf31747b809856f4f2fe99, type: 3}
+  - {fileID: 6766150292675758825, guid: 1b0dae9b704fca54eb5d007d7b3375aa, type: 3}
+  - {fileID: 740854811948758881, guid: 6b59ccb90173c2f41b1313acafa95704, type: 3}
+  - {fileID: 5903473419407808846, guid: 8cbc957758af0444ca461006c35f5ec4, type: 3}
+  - {fileID: 342620396458516438, guid: 7f99d9f65d398874298180277bf0bcf9, type: 3}
+  - {fileID: 6836902515164840635, guid: 36319857d322a7f4fa5b116738720d30, type: 3}
+--- !u!1 &2877576595009267517
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2877576595009267515}
+  - component: {fileID: 2877576595009267516}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -17,27 +69,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &460608452964916903
+--- !u!4 &2877576595009267515
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 460608452964916897}
+  m_GameObject: {fileID: 2877576595009267517}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 4.5, y: 9.5, z: 0}
   m_LocalScale: {x: 10, y: 20, z: 1}
   m_Children: []
-  m_Father: {fileID: 9166587547372272024}
+  m_Father: {fileID: 6826646242301427716}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &460608452964916896
+--- !u!212 &2877576595009267516
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 460608452964916897}
+  m_GameObject: {fileID: 2877576595009267517}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -81,7 +133,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &460608453645220300
+--- !u!1 &2877576595555860560
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -89,9 +141,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 460608453645220339}
-  - component: {fileID: 460608453645220337}
-  - component: {fileID: 460608453645220338}
+  - component: {fileID: 2877576595555860591}
+  - component: {fileID: 2877576595555860589}
+  - component: {fileID: 2417127158887671061}
   m_Layer: 0
   m_Name: TetrisAgent
   m_TagString: Untagged
@@ -99,27 +151,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &460608453645220339
+--- !u!4 &2877576595555860591
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 460608453645220300}
+  m_GameObject: {fileID: 2877576595555860560}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 4.527521, y: 9.875247, z: -2.328125}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 9166587547372272024}
+  m_Father: {fileID: 6826646242301427716}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &460608453645220337
+--- !u!114 &2877576595555860589
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 460608453645220300}
+  m_GameObject: {fileID: 2877576595555860560}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5d1c4e0b1822b495aa52bc52839ecb30, type: 3}
@@ -133,29 +185,46 @@ MonoBehaviour:
     VectorActionSpaceType: 0
   m_Model: {fileID: 0}
   m_InferenceDevice: 0
-  m_BehaviorType: 0
+  m_BehaviorType: 1
   m_BehaviorName: TetrisLearning
   TeamId: 0
   m_UseChildSensors: 0
---- !u!114 &460608453645220338
+--- !u!114 &2417127158887671061
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 460608453645220300}
+  m_GameObject: {fileID: 2877576595555860560}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf7bca84c425ad341a08828f0ca0d627, type: 3}
+  m_Script: {fileID: 11500000, guid: 044a166be516ac84d8e39aebf077aafb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
-  IsTraining: 1
-  controller: {fileID: 460608453715393103}
---- !u!1 &460608453715393097
+  controller: {fileID: 2877576594148950995}
+  rotation: 0
+  position: 6
+  confirmMove:
+    m_Name: Confirm Move
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: df55e05a-b611-4362-a694-79cdb6a81089
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 49e1c5b4-e1b7-42cc-938f-1a210878b56c
+      m_Path: <Keyboard>/q
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Confirm Move
+      m_Flags: 0
+--- !u!1 &7604809795501961002
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -163,80 +232,28 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 460608453715393096}
-  - component: {fileID: 460608453715393103}
+  - component: {fileID: 6826646242301427716}
   m_Layer: 0
-  m_Name: TetrisGame
+  m_Name: TetrisPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &460608453715393096
+--- !u!4 &6826646242301427716
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 460608453715393097}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 9166587547372272024}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &460608453715393103
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 460608453715393097}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2d2b89252d52b748b4c9df1fd50ab2f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  uiController: {fileID: 0}
-  tetrominoes:
-  - {fileID: 3339187017440103656, guid: c69c97a87e999bd4dac1dce8708995a8, type: 3}
-  - {fileID: 6854638885590889124, guid: 8ca488ab51bf31747b809856f4f2fe99, type: 3}
-  - {fileID: 6766150292675758824, guid: 1b0dae9b704fca54eb5d007d7b3375aa, type: 3}
-  - {fileID: 740854811948758886, guid: 6b59ccb90173c2f41b1313acafa95704, type: 3}
-  - {fileID: 5903473419407808847, guid: 8cbc957758af0444ca461006c35f5ec4, type: 3}
-  - {fileID: 342620396458516436, guid: 7f99d9f65d398874298180277bf0bcf9, type: 3}
-  - {fileID: 6836902515164840634, guid: 36319857d322a7f4fa5b116738720d30, type: 3}
---- !u!1 &5188967486792095414
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 9166587547372272024}
-  m_Layer: 0
-  m_Name: Tetris
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &9166587547372272024
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5188967486792095414}
+  m_GameObject: {fileID: 7604809795501961002}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 460608452964916903}
-  - {fileID: 460608453715393096}
-  - {fileID: 460608453645220339}
+  - {fileID: 2877576595009267515}
+  - {fileID: 2877576594148950996}
+  - {fileID: 2877576595555860591}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

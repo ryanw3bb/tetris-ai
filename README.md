@@ -3,6 +3,8 @@ Training AI to play Tetris
 
 mlagents-learn config/trainer_config.yaml --run-id TetrisLearning --force
 
+mlagents-learn config/trainer_config.yaml --run-id TetrisLearning --resume
+
 tensorboard --logdir=summaries --port=6006 --bind_all
 
 ### Useful resources:

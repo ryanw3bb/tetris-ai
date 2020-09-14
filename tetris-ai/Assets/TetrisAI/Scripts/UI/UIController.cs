@@ -1,5 +1,4 @@
-﻿using Unity.MLAgents;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
@@ -19,12 +18,14 @@ public class UIController : MonoBehaviour
     public void SetScore(int points)
     {
         scoreText.text = string.Format(TetrisSettings.ScoreFormat, points);
+        SetHighScore(points);
     }
 
     public void SetHighScore(int points)
     {
         if (points > highestPoints)
         {
+            Debug.Log("New High Score: " + points);
             highestPoints = points;
             highScoreText.text = string.Format(TetrisSettings.HighScoreFormat, highestPoints);
         }

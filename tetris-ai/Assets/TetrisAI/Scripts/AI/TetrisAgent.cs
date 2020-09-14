@@ -1,26 +1,27 @@
 ﻿using System.Collections.Generic;
 using Unity.MLAgents;
+using Unity.MLAgents.Policies;
 using Unity.MLAgents.Sensors;
 using UnityEngine;
 
 public class TetrisAgent : Agent
 {
-    public bool IsTraining;
+    public bool IsTraining { get { return behaviorParameters.BehaviorType == BehaviorType.Default; } }
+    public bool IsHeuristic { get { return behaviorParameters.BehaviorType == BehaviorType.HeuristicOnly; } }
 
-    [SerializeField] private TetrisGame controller;
+    [SerializeField] protected TetrisGame controller;
 
-    private List<int> maskedActions;
-    private float currentAction;
+    protected BehaviorParameters behaviorParameters;
+    //protected List<float> observations = new List<float>();
+    //protected List<int> maskedActions = new List<int>();
+    //protected int currentAction;
 
     public override void Initialize()
     {
         base.Initialize();
 
         controller.Init(this);
-
-        // override the max step set in the inspector
-        // Max 5000 steps if training, infinite steps if playing
-        MaxStep = IsTraining ? 5000 : 0;
+        behaviorParameters = GetComponent<BehaviorParameters>();
     }
 
     /// <summary>
@@ -40,46 +41,22 @@ public class TetrisAgent : Agent
     /// <param name="vectorAction">The chosen actions</param>
     public override void OnActionReceived(float[] vectorAction)
     {
-        // rotation
-        // 0 - 0
-        // 1 - 90
-        // 2 - 180
-        // 3 - 270
-        /*float rotate = vectorAction[0];
-        if (rotate == 1)
-            controller.CurrentBlock.RotateIfValid(90);
-        else if (rotate == 2)
-            controller.CurrentBlock.RotateIfValid(180);
-        else if (rotate == 3)
-            controller.CurrentBlock.RotateIfValid(270);
+        int currentAction = Mathf.RoundToInt(vectorAction[0]);
 
-        // horizontal (x) position
-        // possible value 0 - 9
-        float position = vectorAction[1];
-        controller.CurrentBlock.SetPosition(Mathf.RoundToInt(position));*/
+        if (!controller.MaskedActions.Contains(currentAction))
+        {
+            // horizontal (x) position & rotation
+            // 40 possible values
+            int rotate = Mathf.RoundToInt(currentAction % TetrisSettings.NumRotations);
+            int position = Mathf.FloorToInt(currentAction / TetrisSettings.NumRotations);
 
-        currentAction = vectorAction[0];
-        int rotate = Mathf.RoundToInt(currentAction % 4f);
-        int position = Mathf.FloorToInt(currentAction / 4f);
-
-        /*if (rotate == 1)
-            controller.CurrentBlock.RotateIfValid(90);
-        else if (rotate == 2)
-            controller.CurrentBlock.RotateIfValid(180);
-        else if (rotate == 3)
-            controller.CurrentBlock.RotateIfValid(270);
-        
-         controller.CurrentBlock.SetPosition(position);*/
-
-        float angle = 0;
-        if (rotate == 1)
-            angle = 90;
-        else if (rotate == 2)
-            angle = 180;
-        else if (rotate == 3)
-            angle = 270;
-
-        controller.CurrentBlock.TransformPosition(position, angle, true);
+            controller.CreateBlock(position, TetrisSettings.Rotations[rotate]);
+            //controller.CurrentBlock.TransformPosition(position, TetrisSettings.Rotations[rotate], true);
+        }
+        else
+        {
+            controller.GameOver();
+        }
     }
 
     /// <summary>
@@ -93,32 +70,35 @@ public class TetrisAgent : Agent
     /// </summary>
     public override void CollectObservations(VectorSensor sensor)
     {
-        maskedActions = new List<int>();
-        int count = 0;
+        /*maskedActions.Clear();
+        observations.Clear();
+        int count = 0;*/
+
+        sensor.AddObservation(controller.States);
 
         // get array of possible states when dropping this piece
         // add impossible moves to the action mask
-        for (int j = 0; j < TetrisSettings.GridWidth; j++)
+        /*for (int j = 0; j < TetrisSettings.GridWidth; j++)
         {
             for (int i = 0; i < TetrisSettings.Rotations.Length; i++)
             {
                 float[] obs = controller.GetState(i, j);
                 sensor.AddObservation(obs);
+                observations.AddRange(obs);
 
-                if(obs[0] == -1)
+                if (Mathf.Approximately(obs[0], -1))
                 {
                     maskedActions.Add(count);
                 }
 
                 count++;
             }
-        }
+        }*/
 
-        if(maskedActions.Count >= 40)
-        {
-            Debug.Log("Can't go");
-            controller.GameOver();
-        }
+        /*int nextPiece = controller.GetNextPiece();
+        sensor.AddObservation(nextPiece);
+
+        sensor.AddObservation(controller.GetFlattenedGrid());*/
     }
 
     /// <summary>
@@ -127,16 +107,17 @@ public class TetrisAgent : Agent
     /// <param name="actionMasker"></param>
     public override void CollectDiscreteActionMasks(DiscreteActionMasker actionMasker)
     {
-        actionMasker.SetMask(0, maskedActions);
+        actionMasker.SetMask(0, controller.MaskedActions);
     }
 
-    public void PrintStatus(string prefix = "")
+    public void Log(string prefix = "")
     {
         string maskedActionsStr = "";
-        foreach(float m in maskedActions)
+        foreach(float m in controller.MaskedActions)
         {
             maskedActionsStr += m + ",";
         }
-        Debug.Log(prefix + " Current action: " + currentAction + "  Masked actions: " + maskedActionsStr);
+
+        Debug.Log(prefix + "  Masked actions: " + maskedActionsStr);
     }
 }

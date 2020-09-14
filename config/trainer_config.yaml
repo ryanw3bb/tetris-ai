@@ -1,40 +1,33 @@
 default:
     trainer: sac
-    batch_size: 1024
-    buffer_size: 10240
+    batch_size: 128
+    buffer_size: 50000
+    buffer_init_steps: 0
     hidden_units: 128
-    learning_rate: 0.0003
-    learning_rate_schedule: linear
+    init_entcoef: 1.0
+    learning_rate: 3.0e-4
+    learning_rate_schedule: constant
     max_steps: 5.0e5
     memory_size: 128
     normalize: false
+    steps_per_update: 10
     num_layers: 2
     time_horizon: 64
     sequence_length: 64
     summary_freq: 10000
+    tau: 0.005
     use_recurrent: false
     vis_encode_type: simple
     reward_signals:
         extrinsic:
             strength: 1.0
-            gamma: 0.99  
+            gamma: 0.99
 
 TetrisLearning:
+    steps_per_update: 1
     hidden_units: 128
     batch_size: 512
-    buffer_size: 20000
+    buffer_size: 50000
     buffer_init_steps: 10000
-    init_entcoef: 0.5
-    tau: 0.005
-    steps_per_update: 1
-    learning_rate: 0.0015
-
-TetrisLearningQueue:
-    batch_size: 128
-    beta: 0.05
-    learning_rate: 1.0e-3
-    reward_signals:
-        curiosity:
-            strength: 0.02
-            gamma: 0.99
-            encoding_size: 64
+    learning_rate: 0.001
+    max_steps: 5.0e6

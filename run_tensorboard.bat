@@ -1,0 +1,1 @@
+cmd /k tensorboard --logdir=summaries --port=6006 --bind_all

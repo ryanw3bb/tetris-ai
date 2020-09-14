@@ -1,38 +1,48 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Unity.MLAgents;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class TetrisGame : MonoBehaviour
 {
-    public TetrisBlock CurrentBlock { get; private set; }
     public Transform[,] Grid { get; private set; }
-    public int[,] IntGrid { get; private set; }
+    private int[,] intGrid;
+
+    public List<float> States;
+    public List<int> MaskedActions;
 
     [SerializeField] private UIController uiController;
-    [SerializeField] private GameObject[] tetrominoes;
+    [SerializeField] private TetrisBlock[] tetrominoes;
     private TetrisAgent agent;
+    private TetrisBag bag;
     private List<GameObject> blocks = new List<GameObject>();
     private int currentPoints = 0;
-    private Vector3 spawnPosition;
+    private int currentPiece;
     private int[,] gridTemp;
-    private int linesCount;
+    private int[] lineCount = new int[4];
 
     public void Init(TetrisAgent agent)
     {
         this.agent = agent;
-        spawnPosition = transform.position + new Vector3(TetrisSettings.SpawnX, TetrisSettings.SpawnY, 0);
         Grid = new Transform[TetrisSettings.GridWidth, TetrisSettings.GridHeight];
-        IntGrid = new int[TetrisSettings.GridWidth, TetrisSettings.GridHeight];
+        intGrid = new int[TetrisSettings.GridWidth, TetrisSettings.GridHeight];
         gridTemp = new int[TetrisSettings.GridWidth, TetrisSettings.GridHeight];
         uiController.SetHighScore(0);
-        ResetGame();
+
+        for (int i = 0; i < tetrominoes.Length; i++)
+        {
+            tetrominoes[i] = Instantiate(tetrominoes[i], Vector3.zero, Quaternion.identity).GetComponent<TetrisBlock>();
+            tetrominoes[i].transform.SetParent(transform);
+            tetrominoes[i].Init(this, agent, true);
+            tetrominoes[i].gameObject.SetActive(false);
+        }
     }
     
     public void StartGame()
     {
-        NewTetrisBlock();
+        ResetGame();
+        GetNextStates();
     }
 
     private void ResetGame()
@@ -42,27 +52,37 @@ public class TetrisGame : MonoBehaviour
             Destroy(block);
         }
 
+        bag = new TetrisBag();
         blocks = new List<GameObject>();
         Array.Clear(Grid, 0, Grid.GetLength(0) * Grid.GetLength(1));
-        Array.Clear(IntGrid, 0, IntGrid.GetLength(0) * IntGrid.GetLength(1));
+        Array.Clear(intGrid, 0, intGrid.GetLength(0) * intGrid.GetLength(1));
         ResetScore();
     }
 
-    public void BlockPlaced(int lines = 0)
+    public void BlockPlaced(int lines, int minRow)
     {
         if (lines > 0)
         {
-            linesCount += lines;
+            lineCount[lines - 1]++;
             AddToScore(TetrisSettings.Points[lines - 1]);
-            agent.AddReward(Mathf.Pow(lines, 2) * TetrisSettings.GridWidth);
+            AddReward(lines, minRow);
         }
         else
         {
-            agent.AddReward(1f);
+            agent.AddReward(TetrisSettings.Reward.BlockPlaced);
         }
 
         UpdateIntGrid();
-        NewTetrisBlock();
+        GetNextStates();
+    }
+
+    private void AddReward(int lines, int minRow)
+    {
+        // favour getting lines at the bottom of the grid
+        // multiplier will be in range 1 - GridHeight (22)
+        float multiplier = TetrisSettings.GridHeight - minRow;
+        float reward = lines * lines * TetrisSettings.GridWidth * multiplier;
+        agent.AddReward(reward);
     }
 
     private void UpdateIntGrid()
@@ -71,8 +91,13 @@ public class TetrisGame : MonoBehaviour
         {
             for (int j = 0; j < TetrisSettings.GridHeight; j++)
             {
-                IntGrid[i, j] = Grid[i, j] == null ? 0 : 1;
+                intGrid[i, j] = Grid[i, j] == null ? 0 : 1;
             }
+        }
+
+        if (agent.IsHeuristic)
+        {
+            LogGridState();
         }
     }
 
@@ -85,138 +110,295 @@ public class TetrisGame : MonoBehaviour
     private void ResetScore()
     {
         currentPoints = 0;
-        linesCount = 0;
+        lineCount = new int[4];
         uiController.SetScore(0);
     }
 
-    private void NewTetrisBlock()
+    public void CreateBlock(int x, float rotation)
     {
-        CurrentBlock = Instantiate(tetrominoes[UnityEngine.Random.Range(0, tetrominoes.Length)],
-            spawnPosition, Quaternion.identity).GetComponent<TetrisBlock>();
-        CurrentBlock.transform.SetParent(transform);
-        CurrentBlock.Init(this, agent);
-        blocks.Add(CurrentBlock.gameObject);
-        
-        agent.RequestDecision();
+        V2Int[] positions = tetrominoes[currentPiece].GetBlockPositions(x, TetrisSettings.SpawnY, rotation);
+        TetrisBlock newBlock = Instantiate(tetrominoes[currentPiece]).GetComponent<TetrisBlock>();
+        newBlock.transform.SetParent(transform);
+        newBlock.gameObject.SetActive(true);
+        newBlock.Init(this, agent);
+        newBlock.SetBlockPositions(positions);
+        blocks.Add(newBlock.gameObject);
     }
+
+    private async void GetNextStates()
+    {
+        States = new List<float>();
+        MaskedActions = new List<int>();
+
+        currentPiece = bag.GetPiece();
+
+        await Task.Run(() => PopulateStates());
+
+        if (MaskedActions.Count >= TetrisSettings.PossibleStates)
+        {
+            GameOver();
+        }
+        else if (!agent.IsHeuristic)
+        {
+            agent.RequestDecision();
+        }
+    }
+
+    private void PopulateStates()
+    {
+        int count = 0;
+
+        for (int i = 0; i < TetrisSettings.GridWidth; i++)
+        {
+            for (int j = 0; j < TetrisSettings.Rotations.Length; j++)
+            {
+                float[] obs = GetState(currentPiece, i, j);
+
+                States.AddRange(obs);
+
+                if (obs[0] == -1)
+                {
+                    MaskedActions.Add(count);
+                }
+
+                count++;
+            }
+        }
+    }
+
+    /*private void PopulateStates()
+    {
+        int nextPiece = bag.PeekNextPiece();
+
+        int count = 0;
+        for (int i = 0; i < TetrisSettings.GridWidth; i++)
+        {
+            for (int j = 0; j < TetrisSettings.Rotations.Length; j++)
+            {
+                bool first = true;
+
+                for (int k = 0; k < TetrisSettings.GridWidth; k++)
+                {
+                    for (int l = 0; l < TetrisSettings.Rotations.Length; l++)
+                    {
+                        float[] obs = GetState(currentPiece, i, j, nextPiece, k, l);
+
+                        States.AddRange(obs);
+
+                        if (first)
+                        {
+                            first = false;
+
+                            if (obs[0] == -1)
+                            {
+                                MaskedActions.Add(count);
+                            }
+
+                            count++;
+                        }
+                    }
+                }
+            }
+        }
+    }*/
+
+    /*private void PopulateStates()
+    {
+        int nextPiece = bag.PeekNextPiece();
+
+        int count = 0;
+        for (int i = 0; i < TetrisSettings.GridWidth; i++)
+        {
+            for (int j = 0; j < TetrisSettings.Rotations.Length; j++)
+            {
+                float[] obs = GetState(currentPiece, i, j);
+
+                if (obs[0] == -1)
+                {
+                    MaskedActions.Add(count);
+                }
+                else
+                {
+                    for (int k = 0; k < TetrisSettings.GridWidth; k++)
+                    {
+                        for (int l = 0; l < TetrisSettings.Rotations.Length; l++)
+                        {
+                            float maxLines = GetNumLines(currentPiece, i, j, nextPiece, k, l);
+                            obs[0] = Math.Max(obs[0], maxLines);
+                        }
+                    }
+                }
+
+                States.AddRange(obs);
+
+                count++;
+            }
+        }
+    }*/
 
     public void GameOver()
     {
-        uiController.SetHighScore(currentPoints);
         UpdateStats();
-        ResetGame();
-        agent.AddReward(-1f);
+        agent.AddReward(TetrisSettings.Reward.GameOver);
         agent.EndEpisode();
     }
 
-    private void UpdateStats()
-    {
-        if (agent.IsTraining)
-        {
-            Academy.Instance.StatsRecorder.Add("Score", currentPoints);
-            Academy.Instance.StatsRecorder.Add("Lines", linesCount);
-        }    
-    }
-
-    public float[] GetFlattenedGrid()
-    {
-        float[] flatGrid = new float[TetrisSettings.GridWidth * TetrisSettings.GridHeight];
-
-        for(int y = 0; y < Grid.GetLength(1); y++)
-        {
-            for(int x = 0; x < Grid.GetLength(0); x++)
-            {
-                int idx = (y * TetrisSettings.GridWidth) + x;
-                flatGrid[idx] = Grid[x, y] == null ? 0 : 1;
-            }
-        }
-
-        return flatGrid;
-    }  
-    
-    public float[] GetState(int rotation, int xPosition)
+    public float[] GetState(int p0, int p0x, int p0Rot)
     {
         float[] states = new float[4];
 
         // get the position of each square when rotated at x position
-        Vector2Int[] positions = CurrentBlock.TransformPosition(xPosition, TetrisSettings.Rotations[rotation]);
+        V2Int[] p0Positions = tetrominoes[p0].GetBlockPositions(p0x, TetrisSettings.SpawnY, TetrisSettings.Rotations[p0Rot]);
 
-        /*if (positions != null)
+        gridTemp = intGrid.Clone() as int[,];
+
+        if (CheckPositionsAreValid(p0Positions, gridTemp))
         {
-            Debug.Log("positions: " + positions[0] + " " + positions[1] + " " + positions[2] + " " + positions[3]);
-        }*/
-
-        bool placed = false;
-
-        // if positions is returned as null it means the placement is invalid
-        if (positions != null)
-        {
-            // move down until the piece is placed
-            while (!placed)
-            {
-                // TODO: make this more elegant
-                for (int i = 0; i < positions.Length; i++)
-                {
-                    positions[i].y--;
-                    if (positions[i].y < 0 || Grid[positions[i].x, positions[i].y] != null)
-                    {
-                        // TODO HERE: check to see how far down we've gone - if it's 1 square it's still invalid
-                        placed = true;
-                    }
-                }
-
-                if (placed)
-                {
-                    for (int i = 0; i < positions.Length; i++)
-                    {
-                        positions[i].y++;
-                    }
-                }
-            }
-
-            gridTemp = IntGrid.Clone() as int[,];
-            for (int i = 0; i < positions.Length; i++)
-            {
-                gridTemp[positions[i].x, positions[i].y] = 1;
-            }
+            MoveBlockDownToPlace(p0Positions, ref gridTemp);
 
             states[0] = NumLines(ref gridTemp);
             GetGridProperties(gridTemp, ref states[1], ref states[2], ref states[3]);
 
             // normalise state values 0 - 1
             states[0] = states[0] / 4f; // max value numlines = 4
-            states[1] = states[1] / 100f; // height
-            states[2] = states[2] / 100f; // bumpiness
-            states[3] = states[3] / 100f; // numHoles
+            states[1] = states[1] / TetrisSettings.GridSize; // sum height
+            states[2] = states[2] / TetrisSettings.GridSize; // bumpiness
+            states[3] = states[3] / TetrisSettings.GridSize; // numHoles
         }
-        
-        if (positions == null || !placed)
+        else
         {
             states[0] = -1;
             states[1] = -1;
             states[2] = -1;
             states[3] = -1;
         }
-         
-        /*if (states[0] > 0)
-        {
-            Debug.Log("rotation: " + rotation + " xpos: " + xPosition + " state: numLines: " + states[0] + 
-                " totalHeight: " + states[1] + " bumpiness: " + states[2] + " numHoles: " + states[3]);
-            Debug.Break();
-        }*/
 
         return states;
     }
 
-    public void LogState()
+    public float GetNumLines(int p0, int p0x, int p0Rot, int p1, int p1x, int p1Rot)
     {
-        float[] states = new float[4];
-        gridTemp = IntGrid.Clone() as int[,];
+        float maxLines = 0;
 
-        states[0] = NumLines(ref gridTemp);
-        GetGridProperties(gridTemp, ref states[1], ref states[2], ref states[3]);
+        // get the position of each square when rotated at x position
+        V2Int[] p0Positions = tetrominoes[p0].GetBlockPositions(p0x, TetrisSettings.SpawnY, TetrisSettings.Rotations[p0Rot]);
+        V2Int[] p1Positions = tetrominoes[p1].GetBlockPositions(p1x, TetrisSettings.SpawnY, TetrisSettings.Rotations[p1Rot]);
 
-        Debug.Log(string.Format("numLines:{0} totalHeight:{1} bumpiness:{2} numHoles:{3}", states[0], states[1], states[2], states[3]));
+        gridTemp = intGrid.Clone() as int[,];
+
+        if (CheckPositionsAreValid(p0Positions, gridTemp))
+        {
+            MoveBlockDownToPlace(p0Positions, ref gridTemp);
+
+            if (CheckPositionsAreValid(p1Positions, gridTemp))
+            {
+                MoveBlockDownToPlace(p1Positions, ref gridTemp);
+
+                // 8 is maximum number of lines from 2 moves
+                maxLines = (int)NumLines(ref gridTemp) / 8f;
+            }
+        }
+
+        return maxLines;
+    }
+
+
+    //public float[] GetState(int p0, int p0x, int p0Rot, int p1, int p1x, int p1Rot)
+    //{
+    //    float[] states = new float[4];
+
+    //    // get the position of each square when rotated at x position
+    //    V2Int[] p0Positions = tetrominoes[p0].GetBlockPositions(p0x, TetrisSettings.SpawnY, TetrisSettings.Rotations[p0Rot]);
+    //    V2Int[] p1Positions = tetrominoes[p1].GetBlockPositions(p1x, TetrisSettings.SpawnY, TetrisSettings.Rotations[p1Rot]);
+
+    //    gridTemp = intGrid.Clone() as int[,];
+
+    //    if (CheckPositionsAreValid(p0Positions, gridTemp))
+    //    {
+    //        MoveBlockDownToPlace(p0Positions, ref gridTemp);
+
+    //        if (CheckPositionsAreValid(p1Positions, gridTemp))
+    //        {
+    //            MoveBlockDownToPlace(p1Positions, ref gridTemp);
+    //        }
+
+    //        states[0] = NumLines(ref gridTemp);
+    //        GetGridProperties(gridTemp, ref states[1], ref states[2], ref states[3]);
+
+    //        // normalise state values 0 - 1
+    //        states[0] = states[0] / 8f; // max value numlines = 4
+    //        states[1] = states[1] / TetrisSettings.GridSize; // sum height
+    //        states[2] = states[2] / TetrisSettings.GridSize; // bumpiness
+    //        states[3] = states[3] / TetrisSettings.GridSize; // numHoles
+    //    }
+    //    else
+    //    {
+    //        states[0] = -1;
+    //        states[1] = -1;
+    //        states[2] = -1;
+    //        states[3] = -1;
+    //    }
+
+    //    return states;
+    //}
+
+    private bool CheckPositionsAreValid(V2Int[] positions, int[,] grid)
+    {
+        foreach (V2Int position in positions)
+        {
+            // outside bounds
+            if (position.x < 0 || position.x >= TetrisSettings.GridWidth || position.y < 0 || position.y >= TetrisSettings.GridHeight)
+            {
+                return false;
+            }
+
+            // already occupied
+            if (grid[position.x, position.y] != 0)
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private void MoveBlockDownToPlace(V2Int[] positions, ref int[,] grid)
+    {
+        bool placed = false;
+        int shift = 0;
+
+        while (!placed)
+        {
+            shift++;
+            for (int i = 0; i < positions.Length; i++)
+            {
+                positions[i].y--;
+                if (positions[i].y < 0 || grid[positions[i].x, positions[i].y] != 0)
+                {
+                    placed = true;
+                }
+            }
+
+            if (placed)
+            {
+                if (shift > 1)
+                {
+                    for (int i = 0; i < positions.Length; i++)
+                    {
+                        positions[i].y++;
+                    }
+                }
+                else
+                {
+                    break;
+                }
+            }
+        }
+
+        for (int i = 0; i < positions.Length; i++)
+        {
+            grid[positions[i].x, positions[i].y] = 1;
+        }
     }
 
     private float NumLines(ref int[,] grid)
@@ -272,9 +454,11 @@ public class TetrisGame : MonoBehaviour
         }
     }
 
-    private void GetGridProperties(int[,] grid, ref float totalHeight, ref float bumpiness, ref float numHoles)
+    private void GetGridProperties(int[,] grid, ref float sumHeight, ref float bumpiness, ref float numHoles)
     {
         int[] heights = new int[TetrisSettings.GridWidth];
+
+        float maxHeight = 0; // not used for now
 
         for (int i = 0; i < TetrisSettings.GridWidth; i++)
         {
@@ -285,8 +469,9 @@ public class TetrisGame : MonoBehaviour
                 {
                     if (grid[i, j] == 1)
                     {
+                        maxHeight = Mathf.Max(maxHeight, j + 1);
                         heights[i] = j + 1;
-                        totalHeight += j + 1;
+                        sumHeight += j + 1;
                         foundHeight = true;
                     }
                 }
@@ -302,7 +487,44 @@ public class TetrisGame : MonoBehaviour
 
         for (int i = 0; i < heights.Length - 1; i++)
         {
-            bumpiness += Mathf.Abs(heights[i] - heights[i + 1]);
+            bumpiness += Math.Abs(heights[i] - heights[i + 1]);
         }
     }
+
+    public void LogGridState()
+    {
+        float[] states = new float[3];
+        gridTemp = intGrid.Clone() as int[,];
+        GetGridProperties(gridTemp, ref states[0], ref states[1], ref states[2]);
+
+        Debug.Log(string.Format("totalHeight:{0} bumpiness:{1} numHoles:{2} maxHeight:{3}", states[0], states[1], states[2], states[3]));
+    }
+
+    private void UpdateStats()
+    {
+        if (agent.IsTraining)
+        {
+            Academy.Instance.StatsRecorder.Add("Score", currentPoints);
+            Academy.Instance.StatsRecorder.Add("Line x1", lineCount[0]);
+            Academy.Instance.StatsRecorder.Add("Line x2", lineCount[1]);
+            Academy.Instance.StatsRecorder.Add("Line x3", lineCount[2]);
+            Academy.Instance.StatsRecorder.Add("Line x4", lineCount[3]);
+        }
+    }
+
+    /*public float[] GetFlattenedGrid()
+    {
+        float[] flatGrid = new float[TetrisSettings.GridWidth * TetrisSettings.GridHeight];
+
+        for(int y = 0; y < Grid.GetLength(1); y++)
+        {
+            for(int x = 0; x < Grid.GetLength(0); x++)
+            {
+                int idx = (y * TetrisSettings.GridWidth) + x;
+                flatGrid[idx] = intGrid[x, y];
+            }
+        }
+
+        return flatGrid;
+    }*/
 }
