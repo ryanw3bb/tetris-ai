@@ -3,31 +3,28 @@ using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
-    public static UIController Instance { get; private set; }
-
     [SerializeField] private Text scoreText;
     [SerializeField] private Text highScoreText;
 
-    private int highestPoints = -1;
+    private static int highScore;
+    private static int highLines;
 
-    private void Awake()
+    public void SetScore(int points, int lines)
     {
-        Instance = this;
+        scoreText.text = string.Format(TetrisSettings.ScoreFormat, points, lines);
+        SetHighScore(points, lines);
     }
 
-    public void SetScore(int points)
+    public void SetHighScore(int points, int lines)
     {
-        scoreText.text = string.Format(TetrisSettings.ScoreFormat, points);
-        SetHighScore(points);
-    }
-
-    public void SetHighScore(int points)
-    {
-        if (points > highestPoints)
+        if (points > highScore)
         {
-            Debug.Log("New High Score: " + points);
-            highestPoints = points;
-            highScoreText.text = string.Format(TetrisSettings.HighScoreFormat, highestPoints);
+            highScore = points;
+            highLines = lines;
+            Debug.Log(string.Format(TetrisSettings.HighScoreFormat, highScore, highLines));
         }
+
+        string txt = string.Format(TetrisSettings.HighScoreFormat, highScore, highLines);
+        highScoreText.text = txt;
     }
 }

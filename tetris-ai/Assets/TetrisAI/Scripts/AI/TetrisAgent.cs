@@ -8,19 +8,17 @@ public class TetrisAgent : Agent
 {
     public bool IsTraining { get { return behaviorParameters.BehaviorType == BehaviorType.Default; } }
     public bool IsHeuristic { get { return behaviorParameters.BehaviorType == BehaviorType.HeuristicOnly; } }
+    public List<float> States { get; set; }
+    public List<int> MaskedActions { get; set; }
 
-    [SerializeField] protected TetrisGame controller;
-
-    protected BehaviorParameters behaviorParameters;
-    //protected List<float> observations = new List<float>();
-    //protected List<int> maskedActions = new List<int>();
-    //protected int currentAction;
+    [SerializeField] private TetrisGame tetrisGame;
+    private BehaviorParameters behaviorParameters;
 
     public override void Initialize()
     {
         base.Initialize();
 
-        controller.Init(this);
+        tetrisGame.Init(this);
         behaviorParameters = GetComponent<BehaviorParameters>();
     }
 
@@ -29,7 +27,7 @@ public class TetrisAgent : Agent
     /// </summary>
     public override void OnEpisodeBegin()
     {
-        controller.StartGame();
+        tetrisGame.StartGame();
     }
 
     /// <summary>
@@ -43,77 +41,60 @@ public class TetrisAgent : Agent
     {
         int currentAction = Mathf.RoundToInt(vectorAction[0]);
 
-        if (!controller.MaskedActions.Contains(currentAction))
+        if (!MaskedActions.Contains(currentAction))
         {
             // horizontal (x) position & rotation
             // 40 possible values
             int rotate = Mathf.RoundToInt(currentAction % TetrisSettings.NumRotations);
             int position = Mathf.FloorToInt(currentAction / TetrisSettings.NumRotations);
 
-            controller.CreateBlock(position, TetrisSettings.Rotations[rotate]);
-            //controller.CurrentBlock.TransformPosition(position, TetrisSettings.Rotations[rotate], true);
+            tetrisGame.CreateBlock(position, TetrisSettings.Rotations[rotate]);
         }
         else
         {
-            controller.GameOver();
+            tetrisGame.GameOver();
         }
     }
 
     /// <summary>
     /// Collect possible states used by agent to make decisions
-    /// Observation space has size 40
+    /// Observation space has size 160
     /// for each rotation (4) and position (10) get:
     /// number of lines cleared
-    /// number of holes in board
-    /// bumpiness
-    /// max height
+    /// number of holes in grid
+    /// grid bumpiness
+    /// grid sum height
     /// </summary>
     public override void CollectObservations(VectorSensor sensor)
     {
-        /*maskedActions.Clear();
-        observations.Clear();
-        int count = 0;*/
-
-        sensor.AddObservation(controller.States);
-
-        // get array of possible states when dropping this piece
-        // add impossible moves to the action mask
-        /*for (int j = 0; j < TetrisSettings.GridWidth; j++)
-        {
-            for (int i = 0; i < TetrisSettings.Rotations.Length; i++)
-            {
-                float[] obs = controller.GetState(i, j);
-                sensor.AddObservation(obs);
-                observations.AddRange(obs);
-
-                if (Mathf.Approximately(obs[0], -1))
-                {
-                    maskedActions.Add(count);
-                }
-
-                count++;
-            }
-        }*/
-
-        /*int nextPiece = controller.GetNextPiece();
-        sensor.AddObservation(nextPiece);
-
-        sensor.AddObservation(controller.GetFlattenedGrid());*/
+        sensor.AddObservation(States);
     }
 
     /// <summary>
     /// Disables unavailable actions before making a decision request
     /// </summary>
-    /// <param name="actionMasker"></param>
     public override void CollectDiscreteActionMasks(DiscreteActionMasker actionMasker)
     {
-        actionMasker.SetMask(0, controller.MaskedActions);
+        actionMasker.SetMask(0, MaskedActions);
+    }
+
+    /// <summary>
+    /// Add a reward based on the number of lines cleared, with a
+    /// multiplier for the vertical (row) position
+    /// </summary>
+    public void AddLineReward(GridState state)
+    {
+        // favour getting lines at the bottom of the grid
+        // multiplier will be in range 1 - GridHeight / 5 (4.4)
+        float multiplier = (TetrisSettings.GridHeight - state.LinesMinRow) / 5f;
+        float reward = Mathf.Pow(state.NumLines, 2) * TetrisSettings.GridWidth * multiplier;
+        AddReward(reward);
     }
 
     public void Log(string prefix = "")
     {
         string maskedActionsStr = "";
-        foreach(float m in controller.MaskedActions)
+        foreach(float m in MaskedActions)
         {
             maskedActionsStr += m + ",";
         }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-public static class IListExtensions
+public static class IListExtension
 {
     private static Random rng = new Random();
 
