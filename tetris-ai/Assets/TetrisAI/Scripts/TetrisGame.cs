@@ -152,11 +152,11 @@ public class TetrisGame : MonoBehaviour
         {
             grid.MoveBlockDownToPlace(p0Positions, ref gridTemp);
 
-            states[0] = grid.GetLines(ref gridTemp);
-            grid.GetGridProperties(gridTemp, ref states[1], ref states[2], ref states[3]);
+            grid.GetLines(ref gridTemp);
+            grid.GetGridProperties(gridTemp, ref states[0], ref states[1], ref states[2], ref states[3]);
 
             // normalise state values 0 - 1
-            states[0] = states[0] / 4f; // max value numlines = 4
+            states[0] = states[0] / 4f; // max height
             states[1] = states[1] / TetrisSettings.GridSize; // sum height
             states[2] = states[2] / TetrisSettings.GridSize; // bumpiness
             states[3] = states[3] / TetrisSettings.GridSize; // numHoles

@@ -204,7 +204,7 @@ public class TetrisGrid : MonoBehaviour
         }
     }
 
-    public void GetGridProperties(int[,] grid, ref float sumHeight, ref float bumpiness, ref float numHoles)
+    public void GetGridProperties(int[,] grid, ref float maxHeight, ref float sumHeight, ref float bumpiness, ref float numHoles)
     {
         int[] heights = new int[TetrisSettings.GridWidth];
 
@@ -219,6 +219,7 @@ public class TetrisGrid : MonoBehaviour
                     {
                         heights[i] = j + 1;
                         sumHeight += j + 1;
+                        maxHeight = Math.Max(maxHeight, j + 1);
                         foundHeight = true;
                     }
                 }
@@ -240,10 +241,10 @@ public class TetrisGrid : MonoBehaviour
 
     public void LogState()
     {
-        float[] states = new float[3];
+        float[] states = new float[4];
         int[,] gridTemp = intGrid.Clone() as int[,];
-        GetGridProperties(gridTemp, ref states[0], ref states[1], ref states[2]);
+        GetGridProperties(gridTemp, ref states[0], ref states[1], ref states[2], ref states[3]);
 
-        Debug.Log(string.Format("totalHeight:{0} bumpiness:{1} numHoles:{2}", states[0], states[1], states[2]));
+        Debug.Log(string.Format("maxHeight:{0} totalHeight:{1} bumpiness:{2} numHoles:{3}", states[0], states[1], states[2], states[3]));
     }
 }

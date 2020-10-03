@@ -15,6 +15,7 @@ tetris-ai/Assets/ML-Agents/Timers.meta
 tetris-ai/csharp_timers.json
 tetris-ai/Assets/ML-Agents.meta
 tensorboard.bat
+references/
 
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta

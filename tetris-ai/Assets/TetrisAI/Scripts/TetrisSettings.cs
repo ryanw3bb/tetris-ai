@@ -20,7 +20,7 @@
     public class Reward
     {
         public const float BlockPlaced = 1;
-        public const float GameOver = -1000f;
+        public const float GameOver = -10f;
     }
 }
 

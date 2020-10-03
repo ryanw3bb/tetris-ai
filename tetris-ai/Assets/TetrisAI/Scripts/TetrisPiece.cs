@@ -55,6 +55,13 @@ public class TetrisPiece : MonoBehaviour
 
         if (Time.time - previousTime > TetrisSettings.FallTime)
         {
+            /*bool moveValid = true;
+
+            while (moveValid)
+            {
+                moveValid = MoveIfValid(0, -1);
+            }*/
+
             if (!MoveIfValid(0, -1))
             {
                 if(!CheckForGameOver())
