@@ -1,5 +1,8 @@
 # Tetris AI
-Training AI to play Tetris using Unity ML-Agents. The SAC training algorithm was used for training, other hyperparameters are in config.yaml. Current high score is 460260.
+Training AI to play Tetris using Unity's Reinforcement Learning package ML-Agents. The SAC training algorithm was used for training with other hyperparameters defined in trainer_config.yaml. Top recorded high score is 460260.
+
+## Demo
+![gif](tetris.gif)
 
 ## Training
 Run mlagents from the command line and play the ```Train.unity``` scene.
