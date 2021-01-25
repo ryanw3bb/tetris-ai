@@ -20,7 +20,6 @@ View the results using tensorboard.
 Test the generated model in the ```Play.unity``` scene, simply add the .nn file in the model field of behaviour parameters and check the Behaviour Type is set to Inference.
 
 ## References
-https://github.com/Unity-Technologies/ml-agents/blob/release_2/docs/Readme.md
-https://github.com/Unity-Technologies/ml-agents/releases/tag/release_2  
+https://github.com/Unity-Technologies/ml-agents/blob/release_2/docs/Readme.md   
 https://github.com/Unity-Technologies/ml-agents/blob/release_2_verified/docs/Training-Configuration-File.md  
 https://codemyroad.wordpress.com/2013/04/14/tetris-ai-the-near-perfect-player/
