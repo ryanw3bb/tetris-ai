@@ -12,11 +12,10 @@ Launch mlagents-learn from the command line and run the ```Train.unity``` scene.
 
 ```mlagents-learn config/trainer_config.yaml --run-id TetrisLearning```
 
-View the results using tensorboard.  
+View the results using tensorboard.
 
 ```tensorboard --logdir=summaries --port=6006 --bind_all```
 
-## Testing
 Test the generated model in the ```Play.unity``` scene, simply add the .nn file in the model field of behaviour parameters and check the Behaviour Type is set to Inference.
 
 ## References
